@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+	width: 100%;
+	height: 100vh;
+	font-family: "Exo", sans-serif;
+	color: #fff;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.container {
+	width: 100%;
+	position: absolute;
+	top: 35%;
+	text-align: center;
+}
+
+header{
+    text-align: center;
+}
+
+#login-wrapper{
+    border: 15px inset white;
+    border-radius: 25px;
+	height: 250px;
+	margin: auto;
+	padding: 10px;
+	width: 210px;
+    text-align: center;
+}
+
+footer{
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+#login-wrapper h3{
+    font-family: 'Fjalla One', sans-serif;
+
+}
+
+.login-labels{
+    font-family: 'M PLUS 1p', sans-serif;
+
+}
