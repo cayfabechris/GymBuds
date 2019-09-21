@@ -4,9 +4,10 @@
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
 </style>
-    </style>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
+    <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/style-login.css">
         <title>
     GymBuds
@@ -26,16 +27,17 @@
 <h3>
     Login
 </h3>
-<form>
+<form name="login">
 <div class="login-labels">
 Email:
-<input type="email" id="email" placeholder="Email" required>
+<br>
+<input type="email" ondblClick="this.select();" id="email" placeholder="Email" required>
 <br>
 Password:
-<input type="password" id="password" placeholder="Password" minlength="10" required>
+<input type="password" ondblClick="this.select();" id="password" placeholder="Password" minlength="10" required>
 </div>
 <br>
-<button type="button">Login</button>
+<button onclick="validateLogin()" type="button">Login</button>
 <br>
 <a href="https://google.com">Create an account</a>
 <br>
