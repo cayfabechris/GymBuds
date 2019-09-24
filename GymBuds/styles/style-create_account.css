@@ -37,16 +37,6 @@ header h1 a{
 	text-decoration: none;
 }
 
-#login-wrapper{
-    border: 15px inset white;
-    border-radius: 25px;
-	height: 250px;
-	margin: auto;
-	padding: 10px;
-	width: 210px;
-    text-align: center;
-}
-
 footer{
     position: relative;
     right: 0;
@@ -56,20 +46,27 @@ footer{
     text-align: center;
 }
 
-#login-wrapper h3{
-    font-family: 'Fjalla One', sans-serif;
-
+#create_account-wrapper{
+    border: 15px inset white;
+    border-radius: 25px;
+	height: 350px;
+	margin: auto;
+	padding: 10px;
+	width: 210px;
+    text-align: center;
 }
 
-.login-labels{
+.create-account-labels{
     font-family: 'M PLUS 1p', sans-serif;
 	text-align: center;
 }
 
 input{
-	border-radius: 25px;
+    border-radius: 25px;
 }
 
 button{
-	border-radius: 25px;
+    border-radius: 25px;
+    background-color: white;
+    
 }
