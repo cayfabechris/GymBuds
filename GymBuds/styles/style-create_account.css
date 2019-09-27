@@ -49,7 +49,7 @@ footer{
 #create_account-wrapper{
     border: 15px inset white;
     border-radius: 25px;
-	height: 350px;
+	height: 325px;
 	margin: auto;
 	padding: 10px;
 	width: 210px;
@@ -62,7 +62,9 @@ footer{
 }
 
 input{
-    border-radius: 25px;
+	border-radius: 25px;
+	text-align: center; 
+
 }
 
 button{
@@ -70,3 +72,18 @@ button{
     background-color: white;
     
 }
+::-webkit-input-placeholder {
+	text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+	text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+	text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+	text-align: center; 
+ }
