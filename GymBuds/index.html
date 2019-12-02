@@ -31,17 +31,14 @@
 </h3>
 <form name="login">
 <div class="login-labels">
-Email:
-<br>
-<input type="email" ondblClick="this.select();" id="email" placeholder="Email" required>
-<br>
-Password:
-<input type="password" ondblClick="this.select();" id="password" placeholder="Password" maxlength="10" required>
+<input type="email" ondblClick="this.select();" name = email id="email" placeholder="Email" size = "25" required>
+<br><br>
+<input type="password" ondblClick="this.select();" name = password id="password" placeholder="Password" minlength="5" maxlength="20" size = "25" required>
 </div>
 <br>
-<button onclick="validateLogin()" type="button">Login</button>
-<br>
-<a href="create-account.html">Sign Up</a>
+<button onclick="validateLogin()" type="submit">Login</button>
+<br><br>
+<a href="register.php">Sign Up</a>
 <br>
 <a href="https://google.com">Forgot password</a>
 

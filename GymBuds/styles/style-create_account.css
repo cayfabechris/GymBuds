@@ -46,14 +46,21 @@ footer{
     text-align: center;
 }
 
+
+
 #create_account-wrapper{
-    border: 15px inset white;
+    border: 8px inset white;
     border-radius: 25px;
-	height: 350px;
+	height: auto;
 	margin: auto;
 	padding: 10px;
-	width: 210px;
+	width: 220px;
     text-align: center;
+}
+
+.create_account-wrapper h3{
+	font-family: 'Fjalla One', sans-serif;
+
 }
 
 .create-account-labels{
@@ -61,8 +68,10 @@ footer{
 	text-align: center;
 }
 
+
 input{
-    border-radius: 25px;
+	border-radius: 25px;
+	text-align: center;
 }
 
 button{
@@ -70,3 +79,27 @@ button{
     background-color: white;
     
 }
+
+#alert1{
+	border: auto inset green;
+	height: auto;
+	margin: auto;
+	padding: auto;
+	width: 220px;
+}
+
+::-webkit-input-placeholder {
+	text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+	text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+	text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+	text-align: center; 
+ }

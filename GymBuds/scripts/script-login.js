@@ -1,6 +1,6 @@
 function validateLogin(){
     var email = document.forms["login"]["email"].value.trim();
-    var password = document.forms["login"]["password"].value;
+    var password = document.forms["login"]["password"].value.trim();
 
     if(email == "" && password == ""){
         console.log("User entered left email and password blank.")
