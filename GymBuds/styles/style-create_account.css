@@ -51,7 +51,11 @@ footer{
 #create_account-wrapper{
     border: 8px inset white;
     border-radius: 25px;
+<<<<<<< HEAD
 	height: auto;
+=======
+	height: 325px;
+>>>>>>> ac23011fbab6f05d003fbd5fc6a2a6c65fa07932
 	margin: auto;
 	padding: 10px;
 	width: 220px;
@@ -71,7 +75,12 @@ footer{
 
 input{
 	border-radius: 25px;
+<<<<<<< HEAD
 	text-align: center;
+=======
+	text-align: center; 
+
+>>>>>>> ac23011fbab6f05d003fbd5fc6a2a6c65fa07932
 }
 
 button{
@@ -79,6 +88,7 @@ button{
     background-color: white;
     
 }
+<<<<<<< HEAD
 
 #alert1{
 	border: auto inset green;
@@ -88,6 +98,8 @@ button{
 	width: 220px;
 }
 
+=======
+>>>>>>> ac23011fbab6f05d003fbd5fc6a2a6c65fa07932
 ::-webkit-input-placeholder {
 	text-align: center;
  }
