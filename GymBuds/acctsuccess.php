@@ -28,9 +28,10 @@ $email = $_SESSION['email'];
         </h1>
 
         <div id = "verify-acct-wrapper">
-        <h5>Thanks <?php echo $name; ?>,
+        <h3>Thanks <?php echo $name; ?>,
          please check your email at <?php echo $email; ?>
           to verify your account.
+        </h3> 
         </div>
         
         
