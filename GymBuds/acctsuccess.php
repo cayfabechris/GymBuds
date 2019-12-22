@@ -1,9 +1,17 @@
 <?php
 session_start();
-
+if(isset($_SESSION['name'])){
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
+
+header("refresh:30; url=index.html");
+session_destroy();
+}
+
+else{
+        header("Location: index.html");
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +36,10 @@ $email = $_SESSION['email'];
         </h1>
 
         <div id = "verify-acct-wrapper">
-        <h5>Thanks <?php echo $name; ?>,
+        <h3>Thanks <?php echo $name; ?>,
          please check your email at <?php echo $email; ?>
           to verify your account.
+        </h3> 
         </div>
         
         

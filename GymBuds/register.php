@@ -93,18 +93,42 @@ else{
             //SQL insertion successful
             echo "New record created successfully";
 
+            $message = 
+
+            "
+            <html>
+            <title>GymBuds Verification</title>
+            <body>
+            <h1>GymBuds</h1>
+            <br>
+            Use your token " . $token . " on your <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
+            </body>
+            </head>
+            </html>";
+
+            $headers = 
+            "From: ". $config['HOST_EMAIL'];
+
+            $headers .=
+            "Reply-To: ". $config['HOST_EMAIL'];
+
+            $headers .=
+            'MIME-Version: 1.0' . "\r\n";
+
+            $headers .= 
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
              //Sent to
              mail($email, 
 
              //Subject/title
-             "Hello, Verify Your GymBuds Account!",
+             "Hello ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
              
              //Body
-             "Hi ". $firstname . 
-             "<br><br>Please activate your GxmBxds",
+             $message,
              
-             //Sent from
-             "From: ". $config['HOST_EMAIL']);
+             //Headers
+                $headers);
 
              //Start a session to send data to the Account Success page
              session_start();
@@ -160,7 +184,7 @@ catch(PDOException $e){
 <body>
 <header>
         <h1>
-                <a href="index.html">GxmBxds</a>
+                <a href="index.html">GymBuds</a>
         </h1>
 
         <?php if($msg != ''): ?>
