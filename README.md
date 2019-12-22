@@ -9,13 +9,13 @@ Current features:
 Planned features: -->
 
   Users can:
-   - Add friends or "buds" 
+  - Add friends or "buds" 
   - Post times they would like to go to the gym in advance
   - Request rides from other users
 
   Users can view:
-    - Visited gyms
-    - User achievements (Most consistent, given the most rides, scheduled the most, etc.)
+  - Visited gyms
+  - User achievements (Most consistent, given the most rides, scheduled the most, etc.)
 
 
 Current Technologies Used: -->
