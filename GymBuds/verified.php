@@ -4,7 +4,7 @@
 include 'config.php';
 
 session_start();
-
+if(isset($_SESSION['email'])){
 $email = $_SESSION['email'];
 
 try{
@@ -32,17 +32,15 @@ try{
             
                 $connection->close();
             }
-        
-    
-    
-    
-    
     //Error has occurred
     catch(PDOException $e){
         echo "Error:".$e->getMessage();
     }
-    
+}
 
+else{
+    header('Location: index.html');
+}
 ?>
 
 
@@ -57,7 +55,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GymBuds: Verify Account</title>
+    <title>GymBuds: Verified!</title>
     <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/style-create_account.css">
 </head>
@@ -66,18 +64,12 @@ try{
         <h1>
                 <a href="index.html">GymBuds</a>
         </h1>
-
- 
-        
-        
             <h3>
             Your Account Has Been Verified!
             </h3>
            
             Thanks <?php echo $firstName?>, you now have full access to your GymBuds account! 
 
-            
-        
         <footer>
             Website made by Cayfabe Studios &copy;
         </footer>

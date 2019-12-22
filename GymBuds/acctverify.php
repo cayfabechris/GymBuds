@@ -48,11 +48,11 @@ else{
     $msg = 'Please fill in all fields';
     $msgClass = 'alert-danger';
 }
-    //Check if the given username already exists
+    //Check if the given email already exists
     $sql = $connection->query("SELECT email FROM user WHERE email = '$email'");
     
     if($sql->num_rows == 0){
-        //Username already exists/taken
+        //Email does not exist
         $msg ="Email does not exist";
     }
 
@@ -60,7 +60,7 @@ else{
         //Check if the given email exists
         $sql = $connection->query("SELECT * FROM user WHERE email = '$email' AND isEmailConfirmed = 1");
         if($sql->num_rows > 0 && strlen($email) > 0){
-            //Email already exists/taken
+            //Email already verified
             $msg ="Account already verified";
         }
     

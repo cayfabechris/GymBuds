@@ -184,7 +184,7 @@ catch(PDOException $e){
 <body>
 <header>
         <h1>
-                <a href="index.html">GxmBxds</a>
+                <a href="index.html">GymBuds</a>
         </h1>
 
         <?php if($msg != ''): ?>

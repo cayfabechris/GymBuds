@@ -42,6 +42,8 @@ body{
     padding: 1rem;
 	text-align: center;
 	clear: both;
+	font-family: 'Arimo';
+
 }
 
 ::-webkit-input-placeholder {

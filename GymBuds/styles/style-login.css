@@ -20,11 +20,11 @@ body{
 	}
 }
 
-.container {
-	width: 100%;
-	position: absolute;
-	top: 35%;
-	text-align: center;
+
+
+.links{
+	font-family: 'Arimo';
+
 }
 
 header{
@@ -40,7 +40,6 @@ header h1 a{
 #login-wrapper{
     border: 10px inset white;
     border-radius: 25px;
-	height: auto;
 	margin: auto;
 	padding: 10px;
 	width: 220px;
@@ -48,12 +47,13 @@ header h1 a{
 }
 
 footer{
-    position: relative;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    text-align: center;
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;
+	font-family: 'Arimo';
+  
 }
 
 #login-wrapper h3{
@@ -69,10 +69,13 @@ footer{
 input{
 	border-radius: 25px;
 	text-align: center;
+	font-family: 'Arimo';
 }
 
 button{
 	border-radius: 25px;
+	font-family: 'Arimo';
+
 }
 
 ::-webkit-input-placeholder {

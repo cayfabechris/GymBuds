@@ -1,9 +1,17 @@
 <?php
 session_start();
-
+if(isset($_SESSION['name'])){
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
+
+header("refresh:30; url=index.html");
+session_destroy();
+}
+
+else{
+        header("Location: index.html");
+}
 ?>
 
 <!DOCTYPE html>
