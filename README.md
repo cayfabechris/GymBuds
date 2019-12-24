@@ -1,7 +1,7 @@
 # GymBuds
 
 A web application designed to bring gym partners together. 
-The core functionality of this app is provide a platform in which users can schedule and plan their gym activies with other users.
+The core functionality of this app is provide a platform in which users can schedule and plan their gym activities with other users.
 
 Current features:
   - Users can sign up
