@@ -82,10 +82,6 @@ else{
             //SQL insertion successful
             echo "Account verified successfully";
 
-          
-
-  
-
              //Start a session to send data to the Account Success page
              session_start();
 
@@ -108,7 +104,10 @@ else{
 //Error has occurred
 catch(PDOException $e){
     echo "Error:".$e->getMessage();
+    $connection->close();
+
 }
+
 
 ?>
 
@@ -130,7 +129,7 @@ catch(PDOException $e){
 <body>
 <header>
         <h1>
-                <a href="index.html">GymBuds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
 
         <?php if($msg != ''): ?>

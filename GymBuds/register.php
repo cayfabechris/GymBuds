@@ -82,7 +82,7 @@ else{
             $token = substr($token, 0, 10);
 
             //Encrypt password using sodium library
-            $hashedPassword = sodium_crypto_pwhash_str($password, SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_MEMLIMIT_INTERACTIVE);
+            $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
             
             //echo "Create account reached!";
             //SQL statement to insert user inputs to the database
@@ -161,7 +161,10 @@ else{
 //Error has occurred
 catch(PDOException $e){
     echo "Error:".$e->getMessage();
+    $connection->close();
+
 }
+
 
 
 ?>
@@ -184,7 +187,7 @@ catch(PDOException $e){
 <body>
 <header>
         <h1>
-                <a href="index.html">GymBuds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
 
         <?php if($msg != ''): ?>

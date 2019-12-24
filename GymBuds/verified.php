@@ -35,11 +35,15 @@ try{
     //Error has occurred
     catch(PDOException $e){
         echo "Error:".$e->getMessage();
+        $connection->close();
+
     }
+
+
 }
 
 else{
-    header('Location: index.html');
+    header('Location: login.php');
 }
 ?>
 
@@ -62,7 +66,7 @@ else{
 <body>
 <header>
         <h1>
-                <a href="index.html">GymBuds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
             <h3>
             Your Account Has Been Verified!

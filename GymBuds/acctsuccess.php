@@ -5,12 +5,12 @@ $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
 
-header("refresh:30; url=index.html");
+header("refresh:30; url=login.php");
 session_destroy();
 }
 
 else{
-        header("Location: index.html");
+        header("Location: login.php");
 }
 ?>
 
@@ -32,7 +32,7 @@ else{
 <body>
 <header>
         <h1>
-                <a href="index.html">GxmBxds</a>
+                <a href="login.php">GxmBxds</a>
         </h1>
 
         <div id = "verify-acct-wrapper">
