@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['name'])){
+
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
@@ -10,7 +11,7 @@ session_destroy();
 }
 
 else{
-        header("Location: login.php");
+       header("Location: login.php");
 }
 ?>
 
@@ -20,6 +21,8 @@ else{
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -42,12 +45,9 @@ else{
         </h3> 
         </div>
         
-        
-      
-        <footer id ="footer">
+        <footer>
             Website made by Cayfabe Studios &copy;
 </footer>
-        </body>
     
 </body>
 </html>

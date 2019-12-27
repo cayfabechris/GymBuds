@@ -31,6 +31,8 @@ try{
                 $firstName = $row["first_name"];
             
                 $connection->close();
+                session_destroy();
+
             }
     //Error has occurred
     catch(PDOException $e){
@@ -38,8 +40,6 @@ try{
         $connection->close();
 
     }
-
-
 }
 
 else{
@@ -54,6 +54,8 @@ else{
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+
 </style>
 <head>
     <meta charset="UTF-8">

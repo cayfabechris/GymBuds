@@ -81,13 +81,17 @@ else{
             $token = str_shuffle($token);
             $token = substr($token, 0, 10);
 
+            $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
+            $fpToken = str_shuffle($fpToken);
+            $fpToken = substr($fpToken, 0, 10);
+
             //Encrypt password using sodium library
             $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
             
             //echo "Create account reached!";
             //SQL statement to insert user inputs to the database
-            $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token)
-            VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '0', '$token');";
+            $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token, FPToken)
+            VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '0', '$token', '$fpToken');";
 
            if ($connection->query($sql) === TRUE) {
             //SQL insertion successful
@@ -101,7 +105,7 @@ else{
             <body>
             <h1>GymBuds</h1>
             <br>
-            Use your token " . $token . " on your <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
+            Hi ". $firstname . ", Use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
             </body>
             </head>
             </html>";
@@ -122,13 +126,13 @@ else{
              mail($email, 
 
              //Subject/title
-             "Hello ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
+             "Hi ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
              
              //Body
              $message,
              
              //Headers
-                $headers);
+            $headers);
 
              //Start a session to send data to the Account Success page
              session_start();
@@ -145,16 +149,10 @@ else{
         }
             
             $connection->close();
-
-           
-
         }
     
     }
-
 }
-
-  
 }
 }
 
@@ -164,9 +162,6 @@ catch(PDOException $e){
     $connection->close();
 
 }
-
-
-
 ?>
 
 <!DOCTYPE html>

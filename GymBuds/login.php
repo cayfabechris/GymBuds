@@ -118,62 +118,67 @@ catch(PDOException $e){
 
 <!DOCTYPE html>
 <html>
-    <style>
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
-@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
 </style>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
     <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/style-login.css">
-        <title>
-    GymBuds
-        </title>
-    </head>
+    <title>
+        GymBuds
+    </title>
+</head>
+
 <body>
-<header>
-<h1>
-<a href="login.php">GymBuds</a>
-    
-</h1>
+    <header>
+        <h1>
+            <a href="login.php">GymBuds</a>
+
+        </h1>
 
 
-<img src="images/dumbbell.png" height="128" width="128" alt="No dumbbell!">
-<h3>Gym together, Gain together!</h3> 
-</header>
+        <img src="images/dumbbell.png" height="128" width="128" alt="No dumbbell!">
+        <h3>Gym together, Gain together!</h3>
+    </header>
 
-<?php if($msg != ''): ?>
-            <div id="login-wrapper">
-                <?php echo $msg; ?>
+    <?php if($msg != ''): ?>
+    <div id="login-wrapper">
+        <?php echo $msg; ?>
+    </div>
+    <?php endif; ?>
+
+    <div id="login-wrapper">
+        <h3>
+            Login
+        </h3>
+        <form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <div class="login-labels">
+                <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
+                    required>
+                <br><br>
+                <input type="password" ondblClick="this.select();" name=password id="password" placeholder="Password"
+                    minlength="5" maxlength="20" size="25" required>
             </div>
-        <?php endif; ?>
+            <br>
+            <button name="submit" value="submit" type="submit">Login</button>
+            <br><br>
+            <a href="register.php" class="links">Sign Up</a>
+            <br>
+            <a href="forgotpassword.php" class="links">Forgot password</a>
 
-<div id="login-wrapper">
-<h3>
-    Login
-</h3>
-<form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-<div class="login-labels">
-<input type="email" ondblClick="this.select();" name = email id="email" placeholder="Email" size = "25" required>
-<br><br>
-<input type="password" ondblClick="this.select();" name = password id="password" placeholder="Password" minlength="5" maxlength="20" size = "25" required>
-</div>
-<br>
-<button name="submit" value = "submit" type="submit">Login</button>
-<br><br>
-<a href="register.php" class="links">Sign Up</a>
-<br>
-<a href="https://google.com" class="links">Forgot password</a>
+        </form>
 
-</form>
+    </div>
 
-</div>
-
-<footer>
-    Website made by Cayfabe Studios &copy;
-</footer>
+    <footer>
+        Website made by Cayfabe Studios &copy;
+    </footer>
 </body>
+
 </html>

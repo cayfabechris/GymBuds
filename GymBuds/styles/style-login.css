@@ -1,5 +1,5 @@
-body{
-    margin: 0;
+body {
+	margin: 0;
 	width: 100%;
 	height: 100vh;
 	font-family: "Exo", sans-serif;
@@ -8,71 +8,72 @@ body{
 	background-size: 400% 400%;
 	animation: gradientBG 15s ease infinite;
 }
+
 @keyframes gradientBG {
 	0% {
 		background-position: 0% 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
 }
 
-
-
-.links{
+.links {
 	font-family: 'Arimo';
 
 }
 
-header{
-    text-align: center;
+header {
+	text-align: center;
 }
 
-header h1 a{
+header h1 a {
 	font-family: 'Baloo Bhaina', cursive;
 	color: white;
 	text-decoration: none;
 }
 
-#login-wrapper{
-    border: 10px inset white;
-    border-radius: 25px;
+#login-wrapper {
+	border: 10px inset white;
+	border-radius: 25px;
 	margin: auto;
 	padding: 10px;
 	width: 220px;
-    text-align: center;
+	text-align: center;
 }
 
-footer{
+footer {
 	position: absolute;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
 	height: 2.5rem;
 	font-family: 'Arimo';
-  
-}
-
-#login-wrapper h3{
-    font-family: 'Fjalla One', sans-serif;
 
 }
 
-.login-labels{
-    font-family: 'M PLUS 1p', sans-serif;
+#login-wrapper h3 {
+	font-family: 'Fjalla One', sans-serif;
+
+}
+
+.login-labels {
+	font-family: 'M PLUS 1p', sans-serif;
 	text-align: center;
 }
 
-input{
+input {
 	border-radius: 25px;
 	text-align: center;
 	font-family: 'Arimo';
 }
 
-button{
+button {
 	border-radius: 25px;
 	font-family: 'Arimo';
 
@@ -80,16 +81,18 @@ button{
 
 ::-webkit-input-placeholder {
 	text-align: center;
- }
- 
- :-moz-placeholder { /* Firefox 18- */
-	text-align: center;  
- }
- 
- ::-moz-placeholder {  /* Firefox 19+ */
-	text-align: center;  
- }
- 
- :-ms-input-placeholder {  
-	text-align: center; 
- }
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	text-align: center;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	text-align: center;
+}
+
+:-ms-input-placeholder {
+	text-align: center;
+}
