@@ -5,6 +5,7 @@ The core functionality of this app is provide a platform in which users can sche
 
 Current features:
   - Users can sign up
+  - Users can create new passwords if they have forgotten theirs
 
 Planned features: -->
 
