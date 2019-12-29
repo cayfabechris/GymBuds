@@ -60,7 +60,12 @@ if(!empty($email) && !empty($fpToken)){
     
             $sqlUpdate = $connection->query("UPDATE user SET FPToken = '$fpToken' WHERE email = '$email'");
             session_start();
-            $_SESSION['firstName'] = $row['first_name'];
+            $firstName = $row['first_name'];
+            $email = $row['email'];
+
+            $_SESSION['firstName'] = $firstName;
+            $_SESSION['email'] = $email;
+
             header("location: newpassword.php");
             $connection->close();
         }

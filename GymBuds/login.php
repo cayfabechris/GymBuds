@@ -1,5 +1,6 @@
 <?php
 
+if(isset($_SESSION['firstName']))
 //Config file, separate for security reasons
 include 'config.php';
 
