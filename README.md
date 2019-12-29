@@ -3,7 +3,7 @@
 A web application designed to bring gym partners together. 
 The core functionality of this app is provide a platform in which users can schedule and plan their gym activities with other users.
 
-Current features:
+Current features: -->
   - Users can sign up
   - Users can create new passwords if they have forgotten theirs
 
