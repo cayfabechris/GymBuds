@@ -1,8 +1,5 @@
-header {
-	text-align: center;
-}
 
-header h1 a {
+header h1 a{
 	font-family: 'Baloo Bhaina', cursive;
 	color: white;
 	text-decoration: none;
@@ -12,11 +9,17 @@ body {
 	margin: 0;
 	width: 100%;
 	height: 100vh;
-	font-family: "Exo", sans-serif;
 	color: #fff;
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradientBG 15s ease infinite;
+	text-align: center;
+}
+
+body #successTextWrapper{
+	font-family: 'Signika Negative' , sans-serif;
+	text-align: center;
+
 }
 
 @keyframes gradientBG {
@@ -40,6 +43,8 @@ footer {
 	width: 100%;
 	height: 2.5rem;
 	font-family: 'Arimo';
+	overflow: hidden;
+
 }
 
 ::-webkit-input-placeholder {

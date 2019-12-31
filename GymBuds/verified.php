@@ -4,7 +4,12 @@
 include 'config.php';
 
 session_start();
-if(isset($_SESSION['email'])){
+//if(isset($_SESSION['email'])){
+
+//Session variables for debugging and testing only, comment out after each use
+$_SESSION['name'] = "Bob";
+$_SESSION['email'] = "bob123@gmail.com";
+
 $email = $_SESSION['email'];
 
 try{
@@ -40,11 +45,11 @@ try{
         $connection->close();
 
     }
-}
+//}
 
-else{
-    header('Location: login.php');
-}
+//else{
+   // header('Location: login.php');
+//}
 ?>
 
 
@@ -55,6 +60,8 @@ else{
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
 
 </style>
 <head>
@@ -74,8 +81,9 @@ else{
             Your Account Has Been Verified!
             </h3>
            
+            <h3>
             Thanks <?php echo $firstName?>, you now have full access to your GymBuds account! 
-
+</h3>
         <footer>
             Website made by Cayfabe Studios &copy;
         </footer>

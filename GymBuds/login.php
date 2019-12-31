@@ -1,6 +1,5 @@
 <?php
 
-if(isset($_SESSION['firstName']))
 //Config file, separate for security reasons
 include 'config.php';
 
@@ -124,6 +123,10 @@ catch(PDOException $e){
     @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
+
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,10 +172,11 @@ catch(PDOException $e){
             <br>
             <button name="submit" value="submit" type="submit">Login</button>
             <br><br>
+            <div id="links-wrapper">
             <a href="register.php" class="links">Sign Up</a>
             <br>
             <a href="forgotpassword.php" class="links">Forgot password</a>
-
+    </div>
         </form>
 
     </div>

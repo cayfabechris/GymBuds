@@ -47,6 +47,9 @@ if(!empty($password) && !empty($cpassword)){
         $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
 
         $sqlUpdate = $connection->query("UPDATE user SET password = '$hashedPassword' WHERE email = '$email'");
+
+        Sodium_memzero($password);
+        Sodium_memzero($hashedPassword);
         header("location: passwordsuccess.php");
         $connection->close();
 

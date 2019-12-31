@@ -32,6 +32,11 @@ header {
 	text-align: center;
 }
 
+h3{
+	font-family: 'Signika Negative', sans-serif;
+
+}
+
 header h1 a {
 	font-family: 'Baloo Bhaina', cursive;
 	color: white;
@@ -40,7 +45,7 @@ header h1 a {
 
 #login-wrapper {
 	border: 10px inset white;
-	border-radius: 25px;
+	border-radius: 10px;
 	margin: auto;
 	padding: 10px;
 	width: 220px;
@@ -58,24 +63,20 @@ footer {
 }
 
 #login-wrapper h3 {
-	font-family: 'Fjalla One', sans-serif;
+	font-family: 'Signika Negative', sans-serif;
 
 }
 
-.login-labels {
-	font-family: 'M PLUS 1p', sans-serif;
-	text-align: center;
-}
 
 input {
-	border-radius: 25px;
+	border-radius: 5px;
 	text-align: center;
-	font-family: 'Arimo';
+	font-family: 'Scada', sans-serif;
 }
 
 button {
-	border-radius: 25px;
-	font-family: 'Arimo';
+	border-radius: 5px;
+	font-family: 'Scada', sans-serif;
 
 }
 

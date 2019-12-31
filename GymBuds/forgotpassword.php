@@ -128,6 +128,8 @@ catch(PDOException $e){
     @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

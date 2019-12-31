@@ -23,12 +23,6 @@ body {
 	}
 }
 
-.container {
-	width: 100%;
-	position: absolute;
-	top: 35%;
-	text-align: center;
-}
 
 header {
 	text-align: center;
@@ -50,9 +44,14 @@ footer {
 
 }
 
+h3{
+	font-family: 'Signika Negative', sans-serif;
+}
+
 #create_account-wrapper {
+	font-family: 'Signika Negative', sans-serif;
 	border: 8px inset white;
-	border-radius: 25px;
+	border-radius: 10px;
 	height: auto;
 	margin: auto;
 	padding: 10px;
@@ -60,27 +59,22 @@ footer {
 	text-align: center;
 }
 
-.create_account-wrapper h3 {
-	font-family: 'Fjalla One', sans-serif;
-
-}
-
-.create-account-labels {
-	font-family: 'M PLUS 1p', sans-serif;
-	text-align: center;
-}
-
 
 input {
-	border-radius: 25px;
+	font-family: 'Scada', sans-serif;
+	border-radius: 5px;
 	text-align: center;
-
 }
 
 button {
-	border-radius: 25px;
+	font-family: 'Scada', sans-serif;
+	border-radius: 5px;
 	background-color: white;
 
+}
+
+.links-wrapper{
+	font-family: 'Scada', sans-serif;
 }
 
 ::-webkit-input-placeholder {

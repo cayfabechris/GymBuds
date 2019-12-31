@@ -1,18 +1,22 @@
 <?php
 session_start();
-if(isset($_SESSION['name'])){
+//if(isset($_SESSION['name'])){
+
+//Session variables for debugging and testing only, comment out after each use
+$_SESSION['name'] = "Bob";
+$_SESSION['email'] = "bob123@gmail.com";
 
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
 
-header("refresh:30; url=login.php");
+//header("refresh:30; url=login.php");
 session_destroy();
-}
+//}
 
-else{
-       header("Location: login.php");
-}
+//else{
+    //   header("Location: login.php");
+//}
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +26,7 @@ else{
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
 
 </style>
 <head>
@@ -30,19 +35,19 @@ else{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Account Created!</title>
     <script src="scripts/script-login.js"></script>
-    <link rel="stylesheet" href="styles/style-success.css">
+    <link rel="stylesheet" type="text/css" href="styles/style-success.css">
 </head>
 <body>
 <header>
         <h1>
-                <a href="login.php">GxmBxds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
-
-        <div id = "verify-acct-wrapper">
-        <h3>Thanks <?php echo $name; ?>,
+</header>
+        <div id = "successTextWrapper">
+        <h2>Thanks <?php echo $name; ?>,
          please check your email at <?php echo $email; ?>
           to verify your account.
-        </h3> 
+        </h2> 
         </div>
         
         <footer>

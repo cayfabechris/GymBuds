@@ -171,6 +171,8 @@ catch(PDOException $e){
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
 
 </style>
 <head>
@@ -201,22 +203,22 @@ catch(PDOException $e){
             <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="create-account-labels">
             
-            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="text" ondblClick="this.select();" name = "last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name = "last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="text" ondblClick="this.select();" name= "username" id="username" placeholder="Username" minlength="5" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name= "username" id="username" placeholder="Username" minlength="5" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="email" ondblClick="this.select();" name = "email" id="email" placeholder="Email" minlength="5" maxlength="50" size = "25" required>
+            <input type="email" ondblClick="this.select();" name = "email" id="email" placeholder="Email" minlength="5" maxlength="50" size = "30" required>
             <br>
             <br>
-            <input type="password" ondblClick="this.select();" name = "password" id="password" placeholder="Password (Max Length 20)" size = "25" minlength="5" maxlength="20" required>
+            <input type="password" ondblClick="this.select();" name = "password" id="password" placeholder="Password (Max Length 20)" size = "30" minlength="5" maxlength="20" required>
             <br>
             <br>
-            <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "25" minlength="5" maxlength="20" required>
+            <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "30" minlength="5" maxlength="20" required>
 
             <script>
                 function unhidePW() {
