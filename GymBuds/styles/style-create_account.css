@@ -43,6 +43,11 @@ footer {
 	font-family: 'Arimo';
 
 }
+@media (max-height:600px) {
+	footer{
+	 display:none;    
+	}
+   }
 
 h3{
 	font-family: 'Signika Negative', sans-serif;

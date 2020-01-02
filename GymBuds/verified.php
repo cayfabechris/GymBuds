@@ -4,11 +4,11 @@
 include 'config.php';
 
 session_start();
-//if(isset($_SESSION['email'])){
+if(isset($_SESSION['email'])){
 
 //Session variables for debugging and testing only, comment out after each use
-$_SESSION['name'] = "Bob";
-$_SESSION['email'] = "bob123@gmail.com";
+//$_SESSION['name'] = "Bob";
+//$_SESSION['email'] = "bob123@gmail.com";
 
 $email = $_SESSION['email'];
 
@@ -27,16 +27,20 @@ try{
         if ($connection->connect_error) {
             die("Connection failed: " . $connection->connect_error);
         }
-    
-    
-                //SQL statement to insert user inputs to the database
+
+                //Find user's first name to display on page
                 $sql = "SELECT first_name FROM user WHERE email = '$email'";
                 $result = $connection->query($sql);
                 $row = $result->fetch_assoc();
                 $firstName = $row["first_name"];
             
                 $connection->close();
+
+                //Get rid of all user credentials and variables in the session
                 session_destroy();
+
+                //Redirect back to login page
+                header("refresh:30; url=login.php");
 
             }
     //Error has occurred
@@ -45,11 +49,12 @@ try{
         $connection->close();
 
     }
-//}
+}
 
-//else{
-   // header('Location: login.php');
-//}
+//User is unauthorized to view this page, done for security
+else{
+   header('Location: login.php');
+}
 ?>
 
 
@@ -70,20 +75,23 @@ try{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Verified!</title>
     <script src="scripts/script-login.js"></script>
-    <link rel="stylesheet" href="styles/style-create_account.css">
+    <link rel="stylesheet" href="styles/style-success.css">
 </head>
 <body>
 <header>
         <h1>
                 <a href="login.php">GymBuds</a>
         </h1>
-            <h3>
+
+        <div id ="successTextWrapper">
+            <h2>
             Your Account Has Been Verified!
-            </h3>
+            </h2>
            
-            <h3>
+            <h2>
             Thanks <?php echo $firstName?>, you now have full access to your GymBuds account! 
-</h3>
+</h2>
+</div>
         <footer>
             Website made by Cayfabe Studios &copy;
         </footer>

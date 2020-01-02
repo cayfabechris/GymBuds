@@ -7,7 +7,7 @@ include 'config.php';
 $msg = "";
 $msgClass = "";
 try{
-//Submit button has been clicked on the register form
+//Submit button has been clicked
 if(filter_has_var(INPUT_POST, 'submit')){
 
     //Database credentials
@@ -24,61 +24,62 @@ if(filter_has_var(INPUT_POST, 'submit')){
         die("Connection failed: " . $conn->connect_error);
     }
 
-// All registration form inputs
-
+// All form inputs
 $email = $connection->real_escape_string($_POST['email']);
 $password = $connection->real_escape_string($_POST['password']);
-
 
 //Check if any input field is empty
 if(!empty($email) && !empty($password)){
 
     //Is the input email in a proper format i.e abc123@x.com
     if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-
         $msg = 'Please use a valid email';
     }
 
+    //Valid email format
     else{
 
-        //Check if the given username already exists
+    //Check if given email exists
     $sql = "SELECT password FROM user WHERE email = '$email'";
     $result = $connection->query($sql);
     $row = $result->fetch_assoc();
     $hashedPassword = $row["password"];
 
-
+    //Email does not exist
     if($row["password"] == null && strlen($email) > 0){
-        //Email already exists/taken
         $msg ="Email does not exist";
     }
 
+    //Email exists
     else{
-    
+        //Is the user account verified?
         $sql = "SELECT isEmailConfirmed FROM user WHERE email = '$email'";
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
         $confirmed = $row["isEmailConfirmed"];
 
+    //User account has not been verified
     if($confirmed == 0){
         $msg ="Please verify your email";
     }    
 
+    //User account verified, check password input
     else if (Sodium_crypto_pwhash_scryptsalsa208sha256_str_verify($hashedPassword, $password)) {
         // recommended: wipe the plaintext password from memory
         Sodium_memzero($password);
         Sodium_memzero($hashedPassword);
 
+        //Login works
         echo "Login successful!";
         $msg = "Login successful!";
 
-             //Start a session to send data to the Account Success page
+             //Start a session to send data to the dashboard page
              session_start();
 
              $_SESSION['name'] = htmlentities($_POST['first-name']);
              $_SESSION['email'] = htmlentities($_POST['email']);
 
-             //Redirects the page to account success page
+             //Redirects the page to the dashboard page
              header('Location: dashboard.php');
  
             } 
@@ -86,7 +87,6 @@ if(!empty($email) && !empty($password)){
             else {
                 Sodium_memzero($password);
                 Sodium_memzero($hashedPassword);
-
 
                 //SQL connection error
             $msg = "Password is incorrect";

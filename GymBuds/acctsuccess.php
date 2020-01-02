@@ -1,22 +1,30 @@
 <?php
-session_start();
-//if(isset($_SESSION['name'])){
 
-//Session variables for debugging and testing only, comment out after each use
-$_SESSION['name'] = "Bob";
-$_SESSION['email'] = "bob123@gmail.com";
+//Start session
+session_start();
+
+//If the session variable, name, along with the session were
+//started on the previous page, the user has valid access to this page
+if(isset($_SESSION['name'])){
+
+//Hard coded session variables for debugging and testing only, comment out after each use
+//$_SESSION['name'] = "Bob";
+//$_SESSION['email'] = "bob123@gmail.com";
 
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 
+//After 30 seconds, return to the login. Done for user privacy
+header("refresh:30; url=login.php");
 
-//header("refresh:30; url=login.php");
+//Get rid of all user credentials
 session_destroy();
-//}
+}
 
-//else{
-    //   header("Location: login.php");
-//}
+else{
+//User is trying to access this page without having proper authorization, send them back to the login page
+    header("Location: login.php");
+}
 ?>
 
 <!DOCTYPE html>

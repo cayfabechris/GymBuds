@@ -105,7 +105,7 @@ else{
             <body>
             <h1>GymBuds</h1>
             <br>
-            Hi ". $firstname . ", Use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
+            Hi ". $firstname . ", use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
             </body>
             </head>
             </html>";

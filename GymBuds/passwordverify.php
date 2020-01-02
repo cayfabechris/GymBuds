@@ -7,7 +7,7 @@ include 'config.php';
 $msg = "";
 $msgClass = "";
 try{
-//Submit button has been clicked on the register form
+//Submit button has been clicked
 if(filter_has_var(INPUT_POST, 'submit')){
 
     //Database credentials
@@ -24,7 +24,7 @@ if(filter_has_var(INPUT_POST, 'submit')){
         die("Connection failed: " . $conn->connect_error);
     }
 
-// All registration form inputs
+// All form inputs
 
 $email = $connection->real_escape_string($_POST['email']);
 $fpToken = $connection->real_escape_string($_POST['fpToken']);
@@ -38,38 +38,50 @@ if(!empty($email) && !empty($fpToken)){
         $msg = 'Please use a valid email';
     }
 
+    //Email in proper format
     else{
 
-        //Check if the given username already exists
+        //Check if given email exists
     $sql = $connection->query("SELECT * FROM user WHERE email = '$email'");
     
+    //Email does not exist
     if($sql->num_rows == 0 && strlen($email) > 0){
-        //Email already exists/taken
+        
         $msg ="Email does not exist";
     }
 
+    //Email exists
     else if($sql->num_rows == 1){
 
-        $row = $sql->fetch_assoc();
 
+        $row = $sql->fetch_assoc();
+        //Check if forgotten password token matches the unique one for the user
         if($row['FPToken'] == $fpToken){
 
+            //Create a new forgotten password token for the user, done for security
             $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
             $fpToken = str_shuffle($fpToken);
             $fpToken = substr($fpToken, 0, 10);
     
+            //Update FPToken
             $sqlUpdate = $connection->query("UPDATE user SET FPToken = '$fpToken' WHERE email = '$email'");
+            
+            //Session start for next page
             session_start();
+
+            //Personalized credentials for the next page
             $firstName = $row['first_name'];
             $email = $row['email'];
 
             $_SESSION['firstName'] = $firstName;
             $_SESSION['email'] = $email;
 
+            //Redirect to new password page
             header("location: newpassword.php");
             $connection->close();
         }
 
+        //Incorrect FP Token
         else{
             $msg = "Forget Password Token incorrect, please refer to forgotten password email";
         }
@@ -79,7 +91,7 @@ if(!empty($email) && !empty($fpToken)){
 
     else{
                 //SQL connection error
-            $msg = "Error, Multiple Emails";
+            $msg = "Error";
             echo "Error: " . $sql . "<br>" . $connection->error;
         }
             
@@ -107,6 +119,9 @@ catch(PDOException $e){
     @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -138,10 +153,10 @@ catch(PDOException $e){
             </h3>
             <form name="verifyPasswordToken" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="login-labels">
-                <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25" maxlength = 50 required>
+                <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="30" maxlength = 50 required>
                     <br>
                     <br>
-                    <input type="text" ondblClick="this.select();" name=fpToken id="fpToken" placeholder="Token (Included in your email)" size="25" maxlength = 10 required>
+                    <input type="text" ondblClick="this.select();" name=fpToken id="fpToken" placeholder="Token (Included in your email)" size="30" maxlength = 10 required>
                     <br>
                     <br>
                 </div>

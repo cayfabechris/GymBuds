@@ -7,7 +7,7 @@ include 'config.php';
 $msg = "";
 $msgClass = "";
 try{
-//Submit button has been clicked on the register form
+//Submit button has been clicked
 if(filter_has_var(INPUT_POST, 'submit')){
 
     //Database credentials
@@ -24,7 +24,7 @@ if(filter_has_var(INPUT_POST, 'submit')){
         die("Connection failed: " . $conn->connect_error);
     }
 
-// All registration form inputs
+// All account form inputs
 
 $email = $connection->real_escape_string($_POST['email']);
 $token = $connection->real_escape_string($_POST['token']);
@@ -48,7 +48,7 @@ else{
     $msg = 'Please fill in all fields';
     $msgClass = 'alert-danger';
 }
-    //Check if the given email already exists
+    //Check if the given email exists
     $sql = $connection->query("SELECT email FROM user WHERE email = '$email'");
     
     if($sql->num_rows == 0){
@@ -56,38 +56,41 @@ else{
         $msg ="Email does not exist";
     }
 
+    //Email exists
     else{
-        //Check if the given email exists
+        //Check if account has been verified
         $sql = $connection->query("SELECT * FROM user WHERE email = '$email' AND isEmailConfirmed = 1");
         if($sql->num_rows > 0 && strlen($email) > 0){
             //Email already verified
             $msg ="Account already verified";
         }
     
+        //Account not verified
         else{
-            
+            //Check to see if verify token is valid
             $sql = $connection->query("SELECT * FROM user WHERE email = '$email' AND token = '$token'");
 
             if($sql->num_rows == 0 && strlen($email) > 0){
-                //Email already exists/taken
+                //Token not valid
                 $msg ="Token does not match the one provided in your email, please check your email and try again";
             }
+
+            //Token is valid
             else{
 
-            //echo "Create account reached!";
-            //SQL statement to insert user inputs to the database
+            //Update to set user account as verified
             $sql = "UPDATE user SET isEmailConfirmed = 1 WHERE email = '$email' AND token = '$token'";
 
            if ($connection->query($sql) === TRUE) {
-            //SQL insertion successful
             echo "Account verified successfully";
 
-             //Start a session to send data to the Account Success page
+             //Start a session to send data to the verified page
              session_start();
 
+             //Pass email to display personalized message
              $_SESSION['email'] = htmlentities($_POST['email']);
-
-             //Redirects the page to account success page
+                        
+             //Redirects the page to the verified page
              header('Location: verified.php');
 
             } else {

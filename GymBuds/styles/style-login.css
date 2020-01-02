@@ -62,7 +62,13 @@ footer {
 
 }
 
-#login-wrapper h3 {
+@media (max-height:600px) {
+	footer{
+	 display:none;    
+	}
+   }
+
+#login-wrapper h1, h2, h3, h4, h5{
 	font-family: 'Signika Negative', sans-serif;
 
 }

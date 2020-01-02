@@ -7,7 +7,7 @@ include 'config.php';
 $msg = "";
 $msgClass = "";
 try{
-//Submit button has been clicked on the register form
+//Submit button has been clicked
 if(filter_has_var(INPUT_POST, 'submit')){
 
     //Database credentials
@@ -24,41 +24,42 @@ if(filter_has_var(INPUT_POST, 'submit')){
         die("Connection failed: " . $conn->connect_error);
     }
 
-// All registration form inputs
-
+// All form inputs
 $email = $connection->real_escape_string($_POST['email']);
-
 
 //Check if any input field is empty
 if(!empty($email)){
 
     //Is the input email in a proper format i.e abc123@x.com
     if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-
         $msg = 'Please use a valid email';
     }
 
+    //Email in valid format
     else{
 
-        //Check if the given username already exists
+    //Check email existence
     $sql = $connection->query("SELECT * FROM user WHERE email = '$email'");
     
+    //No email found
     if($sql->num_rows == 0 && strlen($email) > 0){
-        //Email already exists/taken
         $msg ="Email does not exist";
     }
 
+    //Email found
     else if($sql->num_rows == 1){
 
         $row = $sql->fetch_assoc();
 
+        //Generate new forgotten password token
         $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
         $fpToken = str_shuffle($fpToken);
         $fpToken = substr($fpToken, 0, 10);
 
+        //Update forgotten password token
         $sqlUpdate = $connection->query("UPDATE user SET FPToken = '$fpToken' WHERE email = '$email'");
 
-
+        //Email sent using Send Mail
         $msg = "New password email sent, please check your email";
 
         $message = 
@@ -104,7 +105,7 @@ if(!empty($email)){
 
     else{
                 //SQL connection error
-            $msg = "Error, Multiple Emails";
+            $msg = "Error";
             echo "Error: " . $sql . "<br>" . $connection->error;
         }
             
@@ -158,9 +159,9 @@ catch(PDOException $e){
         <?php endif; ?>
 
         <div id="login-wrapper">
-            <h3>
+            <h2>
                 Forgot Password
-            </h3>
+            </h2>
             <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="login-labels">
                     <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
