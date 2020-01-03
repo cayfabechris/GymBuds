@@ -120,7 +120,6 @@ catch(PDOException $e){
 <html>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
@@ -173,16 +172,16 @@ catch(PDOException $e){
             <button name="submit" value="submit" type="submit">Login</button>
             <br><br>
             <div id="links-wrapper">
-            <a href="register.php" class="links">Sign Up</a>
+            <a href="register.php">Sign Up</a>
             <br>
-            <a href="forgotpassword.php" class="links">Forgot password</a>
+            <a href="forgotpassword.php">Forgot password</a>
     </div>
         </form>
 
     </div>
 
     <footer>
-        Website made by Cayfabe Studios &copy;
+        Website made by Christian Rodriguez &copy;
     </footer>
 </body>
 

@@ -93,7 +93,7 @@ else{
 </h2>
 </div>
         <footer>
-            Website made by Cayfabe Studios &copy;
+            Website made by Christian Rodriguez &copy;
         </footer>
         </body>
     

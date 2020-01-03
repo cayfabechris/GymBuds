@@ -126,7 +126,6 @@ catch(PDOException $e){
 <html>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
@@ -176,7 +175,7 @@ catch(PDOException $e){
         </div>
 
         <footer>
-            Website made by Cayfabe Studios &copy;
+            Website made by Christian Rodriguez &copy;
         </footer>
 </body>
 
