@@ -1,29 +1,25 @@
 <?php
-
-//Start session
 session_start();
+//If the session variables, name, along with the session were started 
+//on the previous page, the user has valid access to this page
+if(isset($_SESSION['firstName'])){
 
-//If the session variable, name, along with the session were
-//started on the previous page, the user has valid access to this page
-if(isset($_SESSION['name'])){
+//Session variables for debugging and testing only, comment out after each use
+//$_SESSION['firstName'] = "Bob";
 
-//Hard coded session variables for debugging and testing only, comment out after each use
-//$_SESSION['name'] = "Bob";
-//$_SESSION['email'] = "bob123@gmail.com";
+$name = $_SESSION['firstName'];
 
-$name = $_SESSION['name'];
-$email = $_SESSION['email'];
-
-//After 30 seconds, return to the login. Done for user privacy
+//Redirect back to login after 30 seconds, done for user security and privacy
 header("refresh:30; url=login.php");
 
-//Get rid of all user credentials
+//Get rid of all user credentials and variables
 session_destroy();
 }
 
+//User does not have valid authorization to use this page, redirect to login page.
+
 else{
-//User is trying to access this page without having proper authorization, send them back to the login page
-    header("Location: login.php");
+      header("Location: login.php");
 }
 ?>
 
@@ -35,6 +31,8 @@ else{
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
 
 </style>
 <head>
@@ -43,18 +41,17 @@ else{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Account Created!</title>
     <script src="scripts/script-login.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles/style-success.css">
+    <link rel="stylesheet" href="styles/style-success.css">
 </head>
 <body>
 <header>
         <h1>
                 <a href="login.php">GymBuds</a>
         </h1>
-</header>
+
         <div id = "successTextWrapper">
         <h2>Thanks <?php echo $name; ?>,
-         please check your email at <?php echo $email; ?>
-          to verify your account.
+         your password has been reset. You may <a href="login.php">login here</a>.
         </h2> 
         </div>
         

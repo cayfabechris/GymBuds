@@ -5,6 +5,11 @@ include 'config.php';
 
 session_start();
 if(isset($_SESSION['email'])){
+
+//Session variables for debugging and testing only, comment out after each use
+//$_SESSION['name'] = "Bob";
+//$_SESSION['email'] = "bob123@gmail.com";
+
 $email = $_SESSION['email'];
 
 try{
@@ -22,24 +27,33 @@ try{
         if ($connection->connect_error) {
             die("Connection failed: " . $connection->connect_error);
         }
-    
-    
-                //SQL statement to insert user inputs to the database
+
+                //Find user's first name to display on page
                 $sql = "SELECT first_name FROM user WHERE email = '$email'";
                 $result = $connection->query($sql);
                 $row = $result->fetch_assoc();
                 $firstName = $row["first_name"];
             
                 $connection->close();
+
+                //Get rid of all user credentials and variables in the session
+                session_destroy();
+
+                //Redirect back to login page
+                header("refresh:30; url=login.php");
+
             }
     //Error has occurred
     catch(PDOException $e){
         echo "Error:".$e->getMessage();
+        $connection->close();
+
     }
 }
 
+//User is unauthorized to view this page, done for security
 else{
-    header('Location: index.html');
+   header('Location: login.php');
 }
 ?>
 
@@ -50,6 +64,10 @@ else{
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -57,21 +75,25 @@ else{
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Verified!</title>
     <script src="scripts/script-login.js"></script>
-    <link rel="stylesheet" href="styles/style-create_account.css">
+    <link rel="stylesheet" href="styles/style-success.css">
 </head>
 <body>
 <header>
         <h1>
-                <a href="index.html">GymBuds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
-            <h3>
-            Your Account Has Been Verified!
-            </h3>
-           
-            Thanks <?php echo $firstName?>, you now have full access to your GymBuds account! 
 
+        <div id ="successTextWrapper">
+            <h2>
+            Your Account Has Been Verified!
+            </h2>
+           
+            <h2>
+            Thanks <?php echo $firstName?>, you now have full access to your GymBuds account! 
+</h2>
+</div>
         <footer>
-            Website made by Cayfabe Studios &copy;
+            Website made by Christian Rodriguez &copy;
         </footer>
         </body>
     

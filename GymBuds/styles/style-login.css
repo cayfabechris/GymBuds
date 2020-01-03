@@ -1,95 +1,107 @@
-body{
-    margin: 0;
+body {
+	margin: 0;
 	width: 100%;
 	height: 100vh;
-	font-family: "Exo", sans-serif;
 	color: #fff;
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradientBG 15s ease infinite;
 }
+
+
 @keyframes gradientBG {
 	0% {
 		background-position: 0% 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
 }
 
-
-
-.links{
+#links-wrapper a {
 	font-family: 'Arimo';
+	text-decoration: none;
+	color: white;
 
 }
 
-header{
-    text-align: center;
+header {
+	text-align: center;
 }
 
-header h1 a{
+h3{
+	font-family: 'Signika Negative', sans-serif;
+
+}
+
+header h1 a {
 	font-family: 'Baloo Bhaina', cursive;
 	color: white;
 	text-decoration: none;
 }
 
-#login-wrapper{
-    border: 10px inset white;
-    border-radius: 25px;
+#login-wrapper {
+	border: 10px inset white;
+	border-radius: 10px;
 	margin: auto;
 	padding: 10px;
 	width: 220px;
-    text-align: center;
+	text-align: center;
 }
 
-footer{
+footer {
 	position: absolute;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
 	height: 2.5rem;
 	font-family: 'Arimo';
-  
-}
-
-#login-wrapper h3{
-    font-family: 'Fjalla One', sans-serif;
 
 }
 
-.login-labels{
-    font-family: 'M PLUS 1p', sans-serif;
+@media (max-height:600px) {
+	footer{
+	 display:none;    
+	}
+   }
+
+#login-wrapper h1, h2, h3, h4, h5{
+	font-family: 'Signika Negative', sans-serif;
+
+}
+
+
+input {
+	border-radius: 5px;
 	text-align: center;
+	font-family: 'Scada', sans-serif;
 }
 
-input{
-	border-radius: 25px;
-	text-align: center;
-	font-family: 'Arimo';
-}
-
-button{
-	border-radius: 25px;
-	font-family: 'Arimo';
+button {
+	border-radius: 5px;
+	font-family: 'Scada', sans-serif;
 
 }
 
 ::-webkit-input-placeholder {
 	text-align: center;
- }
- 
- :-moz-placeholder { /* Firefox 18- */
-	text-align: center;  
- }
- 
- ::-moz-placeholder {  /* Firefox 19+ */
-	text-align: center;  
- }
- 
- :-ms-input-placeholder {  
-	text-align: center; 
- }
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	text-align: center;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	text-align: center;
+}
+
+:-ms-input-placeholder {
+	text-align: center;
+}

@@ -81,13 +81,17 @@ else{
             $token = str_shuffle($token);
             $token = substr($token, 0, 10);
 
+            $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
+            $fpToken = str_shuffle($fpToken);
+            $fpToken = substr($fpToken, 0, 10);
+
             //Encrypt password using sodium library
-            $hashedPassword = sodium_crypto_pwhash_str($password, SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_MEMLIMIT_INTERACTIVE);
+            $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
             
             //echo "Create account reached!";
             //SQL statement to insert user inputs to the database
-            $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token)
-            VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '0', '$token');";
+            $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token, FPToken)
+            VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '0', '$token', '$fpToken');";
 
            if ($connection->query($sql) === TRUE) {
             //SQL insertion successful
@@ -101,7 +105,7 @@ else{
             <body>
             <h1>GymBuds</h1>
             <br>
-            Use your token " . $token . " on your <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
+            Hi ". $firstname . ", use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
             </body>
             </head>
             </html>";
@@ -122,13 +126,13 @@ else{
              mail($email, 
 
              //Subject/title
-             "Hello ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
+             "Hi ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
              
              //Body
              $message,
              
              //Headers
-                $headers);
+            $headers);
 
              //Start a session to send data to the Account Success page
              session_start();
@@ -145,25 +149,19 @@ else{
         }
             
             $connection->close();
-
-           
-
         }
     
     }
-
 }
-
-  
 }
 }
 
 //Error has occurred
 catch(PDOException $e){
     echo "Error:".$e->getMessage();
+    $connection->close();
+
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -172,6 +170,10 @@ catch(PDOException $e){
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -184,7 +186,7 @@ catch(PDOException $e){
 <body>
 <header>
         <h1>
-                <a href="index.html">GymBuds</a>
+                <a href="login.php">GymBuds</a>
         </h1>
 
         <?php if($msg != ''): ?>
@@ -201,22 +203,22 @@ catch(PDOException $e){
             <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="create-account-labels">
             
-            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="text" ondblClick="this.select();" name = "last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name = "last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="text" ondblClick="this.select();" name= "username" id="username" placeholder="Username" minlength="5" maxlength="25" size = "25" required>
+            <input type="text" ondblClick="this.select();" name= "username" id="username" placeholder="Username" minlength="5" maxlength="25" size = "30" required>
             <br>
             <br>
-            <input type="email" ondblClick="this.select();" name = "email" id="email" placeholder="Email" minlength="5" maxlength="50" size = "25" required>
+            <input type="email" ondblClick="this.select();" name = "email" id="email" placeholder="Email" minlength="5" maxlength="50" size = "30" required>
             <br>
             <br>
-            <input type="password" ondblClick="this.select();" name = "password" id="password" placeholder="Password (Max Length 20)" size = "25" minlength="5" maxlength="20" required>
+            <input type="password" ondblClick="this.select();" name = "password" id="password" placeholder="Password (Max Length 20)" size = "30" minlength="5" maxlength="20" required>
             <br>
             <br>
-            <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "25" minlength="5" maxlength="20" required>
+            <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "30" minlength="5" maxlength="20" required>
 
             <script>
                 function unhidePW() {
@@ -260,7 +262,7 @@ catch(PDOException $e){
             </div>
         
         <footer>
-            Website made by Cayfabe Studios &copy;
+            Website made by Christian Rodriguez &copy;
         </footer>
         </body>
     
