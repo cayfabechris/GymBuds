@@ -1,7 +1,7 @@
 <?php
 
 //Config file, separate for security reasons
-include 'config.php';
+include 'resources/config.php';
 
 session_start();
 if(isset($_SESSION['email'])){
@@ -93,7 +93,7 @@ else{
 </h2>
 </div>
         <footer>
-            Website made by Christian Rodriguez &copy;
+            Website made by Christian Rodriguez 
         </footer>
         </body>
     

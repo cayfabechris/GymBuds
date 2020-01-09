@@ -13,6 +13,7 @@ Planned features: -->
   - Add friends or "buds" 
   - Post times they would like to go to the gym in advance
   - Request rides from other users
+  - Post/record PRs (Personal Records)
 
   Users can view:
   - Visited gyms

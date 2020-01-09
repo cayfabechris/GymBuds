@@ -56,7 +56,7 @@ else{
         </div>
         
         <footer>
-            Website made by Christian Rodriguez &copy;
+            Website made by Christian Rodriguez 
 </footer>
     
 </body>

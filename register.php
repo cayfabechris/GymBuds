@@ -1,7 +1,7 @@
 <?php
 
 //Config file, separate for security reasons
-include 'config.php';
+include 'resources/config.php';
 
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
@@ -203,6 +203,7 @@ catch(PDOException $e){
             <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="create-account-labels">
             
+            
             <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
             <br>
             <br>
@@ -262,7 +263,7 @@ catch(PDOException $e){
             </div>
         
         <footer>
-            Website made by Christian Rodriguez &copy;
+            Website made by Christian Rodriguez 
         </footer>
         </body>
     

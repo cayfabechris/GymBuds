@@ -1,7 +1,7 @@
 <?php
 
 //Config file, separate for security reasons
-include 'config.php';
+include 'resources/config.php';
 session_start();
 //If the session variables, name, email, along with the session were started 
 //on the previous page, the user has valid access to this page
@@ -184,7 +184,7 @@ else{
         </div>
 
         <footer>
-            Website made by Christian Rodriguez &copy;
+            Website made by Christian Rodriguez 
         </footer>
 </body>
 

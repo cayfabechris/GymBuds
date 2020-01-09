@@ -1,7 +1,7 @@
 <?php
 
 //Config file, separate for security reasons
-include 'config.php';
+include 'resources/config.php';
 
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
@@ -168,7 +168,7 @@ catch(PDOException $e){
             </div>
         
         <footer>
-            Website made by Christian Rodriguez &copy;
+            Website made by Christian Rodriguez 
         </footer>
         </body>
     

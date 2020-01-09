@@ -1,7 +1,7 @@
 <?php
 
 //Config file, separate for security reasons
-include 'config.php';
+include 'resources/config.php';
 
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
@@ -152,24 +152,28 @@ catch(PDOException $e){
 
     <?php if($msg != ''): ?>
     <div id="login-wrapper">
-        <?php echo $msg; ?>
+      <h3>  <?php echo $msg; ?> </h3>
     </div>
     <?php endif; ?>
 
     <div id="login-wrapper">
-        <h3>
-            Login
-        </h3>
+   
         <form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="login-labels">
-                <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
+            <h4>
+            Email
+            </h4>
+                <input type="email" ondblClick="this.select();" name=email id="email" size="25"
                     required>
-                <br><br>
-                <input type="password" ondblClick="this.select();" name=password id="password" placeholder="Password"
+
+                <h4>
+            Password
+            </h4>
+                <input type="password" ondblClick="this.select();" name=password id="password" 
                     minlength="5" maxlength="20" size="25" required>
             </div>
             <br>
-            <button name="submit" value="submit" type="submit">Login</button>
+            <button name="submit" value="submit" type="submit">Log in</button>
             <br><br>
             <div id="links-wrapper">
             <a href="register.php">Sign Up</a>
@@ -181,7 +185,7 @@ catch(PDOException $e){
     </div>
 
     <footer>
-        Website made by Christian Rodriguez &copy;
+        Website made by Christian Rodriguez 
     </footer>
 </body>
 
