@@ -6,65 +6,65 @@ include 'resources/config.php';
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
 $msgClass = "";
-try{
-//Submit button has been clicked
-if(filter_has_var(INPUT_POST, 'submit')){
+try {
+    //Submit button has been clicked
+    if (filter_has_var(INPUT_POST, 'submit')) {
 
-    //Database credentials
-    $DB_HOST = $config['DB_HOST'];
-    $DB_USER = $config['DB_USERNAME'];
-    $DB_PASSWORD = $config['DB_PASSWORD'];
-    $DB_NAME = $config['DB_DATABASE'];
+        //Database credentials
+        $DB_HOST = $config['DB_HOST'];
+        $DB_USER = $config['DB_USERNAME'];
+        $DB_PASSWORD = $config['DB_PASSWORD'];
+        $DB_NAME = $config['DB_DATABASE'];
 
-    //Connection to MySQL database
-    $connection = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
+        //Connection to MySQL database
+        $connection = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
 
-    //Connection failure
-    if ($connection->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        //Connection failure
+        if ($connection->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-// All form inputs
-$email = $connection->real_escape_string($_POST['email']);
+        // All form inputs
+        $email = $connection->real_escape_string($_POST['email']);
 
-//Check if any input field is empty
-if(!empty($email)){
+        //Check if any input field is empty
+        if (!empty($email)) {
 
-    //Is the input email in a proper format i.e abc123@x.com
-    if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-        $msg = 'Please use a valid email';
-    }
+            //Is the input email in a proper format i.e abc123@x.com
+            if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                $msg = 'Please use a valid email';
+            }
 
-    //Email in valid format
-    else{
+            //Email in valid format
+            else {
 
-    //Check email existence
-    $sql = $connection->query("SELECT * FROM user WHERE email = '$email'");
-    
-    //No email found
-    if($sql->num_rows == 0 && strlen($email) > 0){
-        $msg ="Email does not exist";
-    }
+                //Check email existence
+                $sql = $connection->query("SELECT * FROM user WHERE email = '$email'");
 
-    //Email found
-    else if($sql->num_rows == 1){
+                //No email found
+                if ($sql->num_rows == 0 && strlen($email) > 0) {
+                    $msg = "Email does not exist";
+                }
 
-        $row = $sql->fetch_assoc();
+                //Email found
+                else if ($sql->num_rows == 1) {
 
-        //Generate new forgotten password token
-        $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
-        $fpToken = str_shuffle($fpToken);
-        $fpToken = substr($fpToken, 0, 10);
+                    $row = $sql->fetch_assoc();
 
-        //Update forgotten password token
-        $sqlUpdate = $connection->query("UPDATE user SET FPToken = '$fpToken' WHERE email = '$email'");
+                    //Generate new forgotten password token
+                    $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
+                    $fpToken = str_shuffle($fpToken);
+                    $fpToken = substr($fpToken, 0, 10);
 
-        //Email sent using Send Mail
-        $msg = "New password email sent, please check your email";
+                    //Update forgotten password token
+                    $sqlUpdate = $connection->query("UPDATE user SET FPToken = '$fpToken' WHERE email = '$email'");
 
-        $message = 
+                    //Email sent using Send Mail
+                    $msg = "New password email sent, please check your email";
 
-        "
+                    $message =
+
+                        "
         <html>
         <title>GymBuds: Forgot Password</title>
         <body>
@@ -75,48 +75,46 @@ if(!empty($email)){
         </head>
         </html>";
 
-        $headers = 
-        "From: ". $config['HOST_EMAIL'];
+                    $headers =
+                        "From: " . $config['HOST_EMAIL'];
 
-        $headers .=
-        "Reply-To: ". $config['HOST_EMAIL'];
+                    $headers .=
+                        "Reply-To: " . $config['HOST_EMAIL'];
 
-        $headers .=
-        'MIME-Version: 1.0' . "\r\n";
+                    $headers .=
+                        'MIME-Version: 1.0' . "\r\n";
 
-        $headers .= 
-        'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .=
+                        'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-         //Sent to
-         mail($email, 
+                    //Sent to
+                    mail(
+                        $email,
 
-         //Subject/title
-         "Hello ". $row['first_name'] . ", set your new GymBuds Password",
-         
-         //Body
-         $message,
-         
-         //Headers
-            $headers);
+                        //Subject/title
+                        "Hello " . $row['first_name'] . ", set your new GymBuds Password",
 
-        $connection->close();
+                        //Body
+                        $message,
 
-    }
+                        //Headers
+                        $headers
+                    );
 
-    else{
-                //SQL connection error
-            $msg = "Error";
-            echo "Error: " . $sql . "<br>" . $connection->error;
+                    $connection->close();
+                } else {
+                    //SQL connection error
+                    $msg = "Error";
+                    echo "Error: " . $sql . "<br>" . $connection->error;
+                }
+            }
         }
-            
-        }
-    }
     }
 }
 //Error has occurred
-catch(PDOException $e){
-    $msg = "Error:".$e->getMessage();
-    echo "Error:".$e->getMessage();
+catch (PDOException $e) {
+    $msg = "Error:" . $e->getMessage();
+    echo "Error:" . $e->getMessage();
     $connection->close();
 }
 
@@ -135,7 +133,6 @@ catch(PDOException $e){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-    <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/style-login.css">
     <title>
         GymBuds
@@ -151,10 +148,10 @@ catch(PDOException $e){
 
 
 
-        <?php if($msg != ''): ?>
-        <div id="login-wrapper">
-            <?php echo $msg; ?>
-        </div>
+        <?php if ($msg != '') : ?>
+            <div id="login-wrapper">
+                <h3> <?php echo $msg; ?> </h3>
+            </div>
         <?php endif; ?>
 
         <div id="login-wrapper">
@@ -163,8 +160,7 @@ catch(PDOException $e){
             </h2>
             <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="login-labels">
-                    <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
-                        required>
+                    <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25" required>
                 </div>
                 <br>
                 <button name="submit" value="submit" type="submit">Send New Password Email</button>
@@ -175,7 +171,7 @@ catch(PDOException $e){
         </div>
 
         <footer>
-            Website made by Christian Rodriguez 
+            Website made by Christian Rodriguez ((<a href="https://github.com/cjrcodes>cjrcodes on GitHub</a>))
         </footer>
 </body>
 

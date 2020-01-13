@@ -114,19 +114,12 @@ catch(PDOException $e){
 
 <!DOCTYPE html>
 <html>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
-
-</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-    <script src="scripts/script-login.js"></script>
+    
+    <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/style-login.css">
     <title>
         GymBuds
@@ -142,7 +135,7 @@ catch(PDOException $e){
 
         <?php if($msg != ''): ?>
         <div id="login-wrapper">
-            <?php echo $msg; ?>
+            <h3><?php echo $msg; ?></h3>
         </div>
         <?php endif; ?>
 
@@ -167,7 +160,7 @@ catch(PDOException $e){
         </div>
 
         <footer>
-            Website made by Christian Rodriguez 
+        Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
         </footer>
 </body>
 

@@ -166,21 +166,13 @@ catch(PDOException $e){
 
 <!DOCTYPE html>
 <html lang="en">
-<style>
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
-@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
 
-</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Register</title>
-    <script src="scripts/script-login.js"></script>
+    <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/style-create_account.css">
 </head>
 <body>
@@ -191,7 +183,7 @@ catch(PDOException $e){
 
         <?php if($msg != ''): ?>
             <div id="create_account-wrapper">
-                <?php echo $msg; ?>
+                <h3><?php echo $msg; ?></h3>
             </div>
         <?php endif; ?>
         
@@ -263,7 +255,7 @@ catch(PDOException $e){
             </div>
         
         <footer>
-            Website made by Christian Rodriguez 
+        Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
         </footer>
         </body>
     
