@@ -112,54 +112,56 @@ catch (PDOException $e) {
 ?>
 
 <!DOCTYPE html>
-<html>
-<style>
-   
-</style>
+<html lang="en">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    <meta charset="UTF-8">
     <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/fonts.css">
-    <link rel="stylesheet" href="styles/style-login.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>
         GymBuds
     </title>
 </head>
 
 <body>
-    <header>
-        
+    <div id="main-wrapper">
+    <header class="header-wrapper">
+        <div id="header-title">
         <h1>
             <a href="login.php">GymBuds</a>
         </h1>
-
-
+        </div>
+        <div id="header-content">
         <img src="images/dumbbell.png" height="128" width="128" alt="No dumbbell!">
         <h3>Gym together, Gain together!</h3>
+        </div>
     </header>
 
     <?php if ($msg != '') : ?>
-        <div id="login-wrapper">
+        <div class="warning-wrapper">
             <h3> <?php echo $msg; ?> </h3>
         </div>
     <?php endif; ?>
 
-    <div id="login-wrapper">
-
+    <div class="content-wrapper">
         <form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <div class="login-labels">
 
+        <div id="content-header">
                 <h3>
-                    Login
+                    Log in
                 </h3>
+                </div>
+                
+                <div class="input-wrapper">
 
                 <input type="email" 
                 ondblClick="this.select();" 
                 name=email 
                 id="email" 
-                size="25" required 
+                required 
                 placeholder="Email">
 
                <br>
@@ -171,14 +173,16 @@ catch (PDOException $e) {
                 id="password" 
                 minlength="5" 
                 maxlength="20" 
-                size="25" required 
+                required 
                 placeholder="Password">
 
-            </div>
-            <br>
+                </div>
+                <br>
+            <div class="button-wrapper">
             <button name="submit" value="submit" type="submit">Log in</button>
+            </div>
             <br><br>
-            <div id="links-wrapper">
+            <div class="links-wrapper">
                 <a href="register.php">Sign Up</a>
                 <br>
                 <a href="forgotpassword.php">Forgot password</a>
@@ -187,9 +191,10 @@ catch (PDOException $e) {
 
     </div>
 
-    <footer>
+    <footer class ="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
     </footer>
-</body>
+    </div>
 
+</body>
 </html>

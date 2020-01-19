@@ -1,12 +1,17 @@
 
-/*Baloo Bhaina*/
+/*Baloo Bhaina, used for main header*/
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-
-/*Arimo*/
-@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
 
 /*Signika Negative*/
 @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
 
 /*Scada*/
 @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
+
+/*Lato*/
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+/*Oswald, for other page links*/
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap');
