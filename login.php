@@ -87,7 +87,7 @@ try {
 
                         //SQL connection error
                         $msg = "Password is incorrect";
-                        echo "Error: " . $sql . "<br>" . $connection->error;
+                        //echo "Error: " . $sql . "<br>" . $connection->error;
                     }
 
                     $connection->close();
@@ -142,25 +142,44 @@ catch (PDOException $e) {
 
     <?php if ($msg != '') : ?>
         <div class="warning-wrapper">
-            <h3> <?php echo $msg; ?> </h3>
+            <style>
+@media all and (max-height: 730px) { 
+    .footer{
+        display: none;
+    }
+
+    #content-title-break{
+        display: none;
+    }
+}    
+</style>        
+    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
         </div>
     <?php endif; ?>
 
     <div class="content-wrapper">
         <form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 
-        <div id="content-header">
+        <div id="content-title">
                 <h3>
                     Log in
                 </h3>
+
+                <br id="content-title-break">
                 </div>
+
+
                 
                 <div class="input-wrapper">
+
+                <br id="content-title-break">
 
                 <input type="email" 
                 ondblClick="this.select();" 
                 name=email 
-                id="email" 
+                id="email"
+                minlength="5" 
+                maxlength="50" 
                 required 
                 placeholder="Email">
 
@@ -181,7 +200,7 @@ catch (PDOException $e) {
             <div class="button-wrapper">
             <button name="submit" value="submit" type="submit">Log in</button>
             </div>
-            <br><br>
+            <br>
             <div class="links-wrapper">
                 <a href="register.php">Sign Up</a>
                 <br>

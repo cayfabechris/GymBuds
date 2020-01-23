@@ -1,12 +1,11 @@
 body {
-  background: linear-gradient(235deg, #0b4b75, #8d114d, #0d805d);
+  background: linear-gradient(235deg, #418696, #800318, #063829);
   background-size: 400% 400%;
   margin: 0;
   width: 100%;
   height: 100vh;
   -webkit-animation: gradientBG 25s ease infinite;
   animation: gradientBG 25s ease infinite;
-  overflow: hidden;
 }
 
 @-webkit-keyframes gradientBG {
@@ -35,12 +34,14 @@ body {
 
 /*Custom border class not found in the HTML markup files. Used as a border template*/
 .border-wrapper, .warning-wrapper, .content-wrapper {
-  border: 10px inset white;
-  border-radius: 10px;
+  border: 8px inset white;
+  border-radius: 8px;
   margin: auto;
-  padding: 10px;
+  padding: 8px;
+  padding-top: 0px;
   width: 220px;
   text-align: center;
+  border-color: black;
 }
 
 .header-wrapper {
@@ -61,16 +62,39 @@ body {
 .header-wrapper #header-content {
   text-align: center;
   font-family: "Signika Negative";
+  color: white;
 }
 
 .warning-wrapper {
   font-family: "Signika Negative";
   border-color: red;
   margin-bottom: 10px;
+  color: white;
+  padding: 0em;
 }
 
-.content-wrapper #content-header {
+#content-title-break {
+  display: none;
+}
+
+.content-wrapper #content-title {
   font-family: "Lato";
+  color: white;
+}
+
+.content-wrapper .input-wrapper input {
+  font-family: "Scada";
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+}
+
+.content-wrapper .button-wrapper button {
+  font-family: "Scada";
+  border-radius: 5px;
+  color: white;
+  background-color: transparent;
+  text-align: center;
 }
 
 .links-wrapper a {
@@ -87,28 +111,55 @@ body {
   width: 100%;
   height: 2.5rem;
   font-family: "Yanone Kaffeesatz";
+  color: white;
 }
 
 .footer a {
   text-decoration: none;
   color: white;
+  text-decoration: underline;
 }
 
+/*Medium screen*/
 @media all and (max-height: 670px) {
   .footer {
     display: none;
   }
-}
-
-@media all and (min-height: 480px) and (max-height: 600px) {
-  #header-content {
+  #content-title-break {
     display: none;
   }
 }
 
-@media all and (max-height: 480px) {
+/*Small screen*/
+@media all and (min-height: 480px) and (max-height: 600px) {
   #header-content {
     display: none;
+  }
+  #content-title-break {
+    display: none;
+  }
+}
+
+/*Very small screen*/
+@media all and (max-height: 480px) {
+  .header-wrapper {
+    padding: 0px;
+    margin: 0px;
+  }
+  #header-content {
+    display: none;
+  }
+  .border-wrapper, .warning-wrapper, .content-wrapper {
+    margin: auto;
+  }
+  #content-title {
+    display: none;
+  }
+  .header-wrapper {
+    padding: 0px;
+  }
+  #content-title-break {
+    display: block;
   }
 }
 
