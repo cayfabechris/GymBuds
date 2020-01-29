@@ -6,6 +6,7 @@ include 'resources/config.php';
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
 $msgClass = "";
+
 try {
     //Submit button has been clicked
     if (filter_has_var(INPUT_POST, 'submit')) {
@@ -116,8 +117,10 @@ catch (PDOException $e) {
 
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width; initial-scale=1.0;">
     <meta charset="UTF-8">
+    <script src="scripts/script.js"></script>
     <script src="scripts/script-login.js"></script>
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -143,38 +146,30 @@ catch (PDOException $e) {
     <?php if ($msg != '') : ?>
         <div class="warning-wrapper">
             <style>
-@media all and (max-height: 730px) { 
-    .footer{
-        display: none;
-    }
-
-    #content-title-break{
-        display: none;
-    }
-}    
+  
 </style>        
     <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
         </div>
     <?php endif; ?>
 
     <div class="content-wrapper">
+        <div class="content-border">
         <form name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 
         <div id="content-title">
                 <h3>
-                    Log in
+                    Log In
                 </h3>
 
                 <br id="content-title-break">
                 </div>
 
-
-                
                 <div class="input-wrapper">
 
                 <br id="content-title-break">
 
-                <input type="email" 
+                <input type="email"
+                autocomplete="email" 
                 ondblClick="this.select();" 
                 name=email 
                 id="email"
@@ -186,7 +181,8 @@ catch (PDOException $e) {
                <br>
                <br>
 
-                <input type="password" 
+                <input type="password"
+                autocomplete="current-password" 
                 ondblClick="this.select();" 
                 name=password 
                 id="password" 
@@ -196,24 +192,27 @@ catch (PDOException $e) {
                 placeholder="Password">
 
                 </div>
-                <br>
+                <div class="checkbox-wrapper">
+                <input type="checkbox">Remember me
+            </div>
             <div class="button-wrapper">
-            <button name="submit" value="submit" type="submit">Log in</button>
+            <button name="submit" value="submit" type="submit">Log In</button>
             </div>
             <br>
+          
             <div class="links-wrapper">
                 <a href="register.php">Sign Up</a>
                 <br>
                 <a href="forgotpassword.php">Forgot password</a>
             </div>
         </form>
-
+        </div>
+    </div>
     </div>
 
     <footer class ="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
     </footer>
-    </div>
 
 </body>
 </html>

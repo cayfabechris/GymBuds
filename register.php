@@ -172,29 +172,52 @@ catch(PDOException $e){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Register</title>
+    <script src="scripts/script.js"></script>
+
     <link rel="stylesheet" href="styles/fonts.css">
-    <link rel="stylesheet" href="styles/style-create_account.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-<header>
+<div id="main-wrapper">
+<header class="header-wrapper">
+        <div id="header-title">
         <h1>
                 <a href="login.php">GymBuds</a>
         </h1>
-
+        </div>
         <?php if($msg != ''): ?>
-            <div id="create_account-wrapper">
-                <h3><?php echo $msg; ?></h3>
-            </div>
+            <div class="warning-wrapper">
+            <style>
+    @media all and (max-height: 730px) { 
+    .footer{
+        display: none;
+    }
+
+    #content-title-break{
+        display: none;
+    }
+}    
+</style>        
+    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
+        </div>
         <?php endif; ?>
         
         
-        <div id="create_account-wrapper">
+        <div class="content-wrapper">
+            <div class="content-border">
+            
+            <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <div id="content-title">
             <h3>
                 Sign Up
             </h3>
-            <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <div class="create-account-labels">
-            
+
+            <br id="content-title-break">
+            </div>
+
+            <div class="input-wrapper">
+
+            <br id="content-title-break">
             
             <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
             <br>
@@ -212,7 +235,7 @@ catch(PDOException $e){
             <br>
             <br>
             <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "30" minlength="5" maxlength="20" required>
-
+            </div>
             <script>
                 function unhidePW() {
                 var x = document.getElementById("password");
@@ -240,23 +263,27 @@ catch(PDOException $e){
   }
                 </script>
 
-            <br>
-            <br>
 
+            <div class="checkbox-wrapper">
+            <label>
             <input type="checkbox" onclick="unhidePW()">Show Password
-
+            </label>
             </div>
-            <br>
+
+            <div class="button-wrapper">
             <button type="submit" name="submit" value="submit" onclick="reconvertPW()">Create Account</button>
-   
+            </div>
+            </div>
+
             
             </form>
-            
+            </div>
             </div>
         
-        <footer>
+        <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
         </footer>
+        </div>
         </body>
     
 </body>

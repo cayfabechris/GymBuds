@@ -122,57 +122,72 @@ catch (PDOException $e) {
 
 <!DOCTYPE html>
 <html>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Signika+Negative&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Scada&display=swap');
-</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-    <link rel="stylesheet" href="styles/style-login.css">
+<link rel="stylesheet" href="styles/fonts.css">
+<link rel="stylesheet" href="styles/style.css">
     <title>
-        GymBuds
+        GymBuds: Forgot Password
     </title>
 </head>
 
 <body>
-    <header>
+    <header class="header-wrapper">
+        <div id="header-title">
         <h1>
             <a href="login.php">GymBuds</a>
 
         </h1>
-
-
+        </div>
+    </header>
+      
 
         <?php if ($msg != '') : ?>
-            <div id="login-wrapper">
-                <h3> <?php echo $msg; ?> </h3>
-            </div>
-        <?php endif; ?>
+        <div class="warning-wrapper">
+            <style>
+@media all and (max-height: 730px) { 
+    .footer{
+        display: none;
+    }
 
-        <div id="login-wrapper">
+    #content-title-break{
+        display: none;
+    }
+}    
+</style>        
+    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
+        </div>
+    <?php endif; ?>
+
+        <div class="content-wrapper">
+            <div class="content-border">
+            <div id="content-title">
             <h2>
                 Forgot Password
             </h2>
+            </div>
+
             <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <div class="login-labels">
-                    <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25" required>
+            <br id="content-title-break">
+            <div class="input-wrapper">
+                    <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
+                        required>
                 </div>
                 <br>
+                <div class="button-wrapper">
                 <button name="submit" value="submit" type="submit">Send New Password Email</button>
-                <br><br>
+                </div>
 
             </form>
 
         </div>
+        </div>
 
-        <footer>
-            Website made by Christian Rodriguez ((<a href="https://github.com/cjrcodes>cjrcodes on GitHub</a>))
-        </footer>
+        <footer class ="footer">
+        Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
+    </footer>
 </body>
 
 </html>
