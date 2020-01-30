@@ -117,29 +117,37 @@ catch (PDOException $e) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GymBuds: Verify Account</title>
+    <script src="scripts/script.js"></script>
     <link rel="stylesheet" href="styles/fonts.css">
-    <link rel="stylesheet" href="styles/style-create_account.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <header>
+    <div id="main-wrapper">
+    <header class="header-wrapper">
+        <div id="header-title">
         <h1>
             <a href="login.php">GymBuds</a>
         </h1>
+        </div>
+</header>
 
         <?php if ($msg != '') : ?>
-            <div id="create_account-wrapper">
+            <div class="warning-wrapper">
                 <h3> <?php echo $msg; ?> </h3>
             </div>
         <?php endif; ?>
 
 
-        <div id="create_account-wrapper">
-            <h2>
+        <div class="content-wrapper">
+            <div class="content-border">
+                <div id="content-title">
+            <h3>
                 Verify Your Account
-            </h2>
+            </h3>
+            </div>
             <form name="verify-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <div class="create-account-labels">
+                <div class="input-wrapper">
 
                     <input type="email" ondblClick="this.select();" name="email" id="email" placeholder="Email" minlength="5" maxlength="50" size="25" required>
                     <br>
@@ -149,16 +157,18 @@ catch (PDOException $e) {
 
                 </div>
                 <br>
+                <div class="button-wrapper">
                 <button type="submit" name="submit" value="submit" onclick="reconvertPW()">Verify Account</button>
-
+                </div>
 
             </form>
-
+            </div>
+        </div>
         </div>
 
-        <footer>
-            Website made by Christian Rodriguez ((<a href="https://github.com/cjrcodes>cjrcodes on GitHub</a>))
-        </footer>
+        <footer class="footer">
+        Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
+    </footer>
 </body>
 
 </body>

@@ -212,12 +212,12 @@ catch(PDOException $e){
                 Sign Up
             </h3>
 
-            <br id="content-title-break">
-            </div>
+               <!-- <br id="content-title-break"> -->
+               </div>
 
             <div class="input-wrapper">
 
-            <br id="content-title-break">
+               <!-- <br id="content-title-break"> -->
             
             <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
             <br>

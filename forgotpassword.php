@@ -126,6 +126,7 @@ catch (PDOException $e) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+<script src="scripts/script.js"></script>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/style.css">
     <title>
@@ -134,6 +135,7 @@ catch (PDOException $e) {
 </head>
 
 <body>
+    <div id="main-wrapper">
     <header class="header-wrapper">
         <div id="header-title">
         <h1>
@@ -146,17 +148,7 @@ catch (PDOException $e) {
 
         <?php if ($msg != '') : ?>
         <div class="warning-wrapper">
-            <style>
-@media all and (max-height: 730px) { 
-    .footer{
-        display: none;
-    }
-
-    #content-title-break{
-        display: none;
-    }
-}    
-</style>        
+       
     <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
         </div>
     <?php endif; ?>
@@ -164,13 +156,13 @@ catch (PDOException $e) {
         <div class="content-wrapper">
             <div class="content-border">
             <div id="content-title">
-            <h2>
+            <h3>
                 Forgot Password
-            </h2>
+            </h3>
             </div>
 
             <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <br id="content-title-break">
+          <!--  <br id="content-title-break"> -->
             <div class="input-wrapper">
                     <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
                         required>
@@ -182,6 +174,7 @@ catch (PDOException $e) {
 
             </form>
 
+        </div>
         </div>
         </div>
 

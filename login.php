@@ -161,12 +161,12 @@ catch (PDOException $e) {
                     Log In
                 </h3>
 
-                <br id="content-title-break">
+               <!-- <br id="content-title-break"> -->
                 </div>
 
                 <div class="input-wrapper">
 
-                <br id="content-title-break">
+               <!-- <br id="content-title-break"> -->
 
                 <input type="email"
                 autocomplete="email" 
@@ -196,9 +196,8 @@ catch (PDOException $e) {
                 <input type="checkbox">Remember me
             </div>
             <div class="button-wrapper">
-            <button name="submit" value="submit" type="submit">Log In</button>
+            <button name="submit" value="submit" type="submit" style="margin-bottom: 8px;">Log In</button>
             </div>
-            <br>
           
             <div class="links-wrapper">
                 <a href="register.php">Sign Up</a>

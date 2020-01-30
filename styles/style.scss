@@ -1,7 +1,7 @@
 
 
 body{
-background: linear-gradient(235deg, #418696, #800318, #063829);
+background: linear-gradient(235deg, #32707efb, #800318, #063829, #167091, #ee7752);
 background-size: 400% 400%;
 margin: 0;
 width: 100%;
@@ -109,7 +109,7 @@ animation: gradientBG 25s ease infinite;
                 border-radius: 5px;
                 color: white;
                 background-color: transparent;
-                text-align: center;       
+                text-align: center;   
             }
         }
     
@@ -182,15 +182,20 @@ animation: gradientBG 25s ease infinite;
         margin: auto;
     }
 
-    #content-title{
-        display: none;
-    }
+    
+
+        .warning-wrapper{
+            h3{
+                margin: 0px;
+            }
+        }
 
     #content-title-break{
         display: block;
     }
 
 }
+
 
 ::-webkit-input-placeholder {
 	text-align: center;
