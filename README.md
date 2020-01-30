@@ -24,7 +24,8 @@ Planned features: -->
 
 Current Technologies Used: -->
   - HTML
-  - CSS
+  - CSS (Sass included)
   - PHP
   - Apache
   - MySQL
+  - Javascript
