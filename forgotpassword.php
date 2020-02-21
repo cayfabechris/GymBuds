@@ -126,9 +126,9 @@ catch (PDOException $e) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-<script src="scripts/script.js"></script>
-<link rel="stylesheet" href="styles/fonts.css">
-<link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/script.js"></script>
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>
         GymBuds: Forgot Password
     </title>
@@ -136,49 +136,48 @@ catch (PDOException $e) {
 
 <body>
     <div id="main-wrapper">
-    <header class="header-wrapper">
-        <div id="header-title">
-        <h1>
-            <a href="login.php">GymBuds</a>
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
 
-        </h1>
-        </div>
-    </header>
-      
+                </h1>
+            </div>
+        </header>
+
 
         <?php if ($msg != '') : ?>
-        <div class="warning-wrapper">
-       
-    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
-        </div>
-    <?php endif; ?>
+            <div class="warning-wrapper">
+
+                <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
+            </div>
+        <?php endif; ?>
 
         <div class="content-wrapper">
             <div class="content-border">
-            <div id="content-title">
-            <h3>
-                Forgot Password
-            </h3>
+                <div id="content-title">
+                    <h3>
+                        Forgot Password
+                    </h3>
+                </div>
+
+                <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <!--  <br id="content-title-break"> -->
+                    <div class="input-wrapper">
+                        <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25" required>
+                    </div>
+                    <br>
+                    <div class="button-wrapper">
+                        <button name="submit" value="submit" type="submit">Send New Password Email</button>
+                    </div>
+
+                </form>
+
             </div>
-
-            <form name="forgotPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-          <!--  <br id="content-title-break"> -->
-            <div class="input-wrapper">
-                    <input type="email" ondblClick="this.select();" name=email id="email" placeholder="Email" size="25"
-                        required>
-                </div>
-                <br>
-                <div class="button-wrapper">
-                <button name="submit" value="submit" type="submit">Send New Password Email</button>
-                </div>
-
-            </form>
-
         </div>
-        </div>
-        </div>
+    </div>
 
-        <footer class ="footer">
+    <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
     </footer>
 </body>

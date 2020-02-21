@@ -1,216 +1,254 @@
+body {
+  background: linear-gradient(235deg,
+      #b8b047fb,
+      #32707efb,
+      #800318,
+      #063829,
+      #167091,
+      #ee7752);
+  background-size: 400% 400%;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  -webkit-animation: gradientBG 25s ease infinite;
+  -moz-animation: gradientBG 25s ease infinite;
+  animation: gradientBG 25s ease infinite;
 
+  @-webkit-keyframes gradientBG {
+    0% {
+      background-position: 0% 78%;
+    }
 
-body{
-background: linear-gradient(235deg, #32707efb, #800318, #063829, #167091, #ee7752);
-background-size: 400% 400%;
-margin: 0;
-width: 100%;
-height: 100vh;
--webkit-animation: gradientBG 25s ease infinite;
--moz-animation: gradientBG 25s ease infinite;
-animation: gradientBG 25s ease infinite;
+    50% {
+      background-position: 100% 23%;
+    }
 
+    100% {
+      background-position: 0% 78%;
+    }
+  }
 
-@-webkit-keyframes gradientBG {
-    0%{background-position:0% 78%}
-    50%{background-position:100% 23%}
-    100%{background-position:0% 78%}
+  @-moz-keyframes gradientBG {
+    0% {
+      background-position: 0% 78%;
+    }
+
+    50% {
+      background-position: 100% 23%;
+    }
+
+    100% {
+      background-position: 0% 78%;
+    }
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 78%;
+    }
+
+    50% {
+      background-position: 100% 23%;
+    }
+
+    100% {
+      background-position: 0% 78%;
+    }
+  }
 }
-@-moz-keyframes gradientBG {
-    0%{background-position:0% 78%}
-    50%{background-position:100% 23%}
-    100%{background-position:0% 78%}
-}
-@keyframes gradientBG {
-    0%{background-position:0% 78%}
-    50%{background-position:100% 23%}
-    100%{background-position:0% 78%}
-}
-}
-
-
 
 /*Custom border class not found in the HTML markup files. Used as a border template*/
 .border-wrapper {
-	border: 8px inset white;
-	border-radius: 8px;
-    margin: auto;
-    padding: 8px;
-    padding-top: 0px;
-	width: 220px;
-    text-align: center;
-    border-color: black;
+  border: 8px inset white;
+  border-radius: 8px;
+  margin: auto;
+  padding: 8px;
+  padding-top: 0px;
+  width: 220px;
+  text-align: center;
+  border-color: black;
+  -webkit-filter: drop-shadow(2px 2px 2px #222);
+  filter: drop-shadow(2px 2px 2px #222);
 }
 
-.header-wrapper{
-    overflow: hidden;
-    margin: auto;
-    #header-title{
-        text-align: center;
-        font-family: "Baloo Bhaina";
+.header-wrapper {
+  overflow: hidden;
+  margin: auto;
 
-        a{
-            color: white;
-            text-decoration: none;
-        }
-      }
+  #header-title {
+    text-align: center;
+    font-family: "Baloo Bhaina";
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(71, 89, 104),
+      0 0 5px rgb(0, 87, 114);
 
-      #header-content{
-          text-align: center;
-          font-family: "Signika Negative";
-          color: white;
-      }
-
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
 
-.content-text{
-    font-family: "Lato";
-    color: white;
-    text-align: center;
-}
+  img {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+  }
 
-.warning-wrapper{
-    @extend .border-wrapper;
+  #header-content {
+    text-align: center;
     font-family: "Signika Negative";
-    border-color: red;
-    margin-bottom: 10px;
     color: white;
-    padding: 0em;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(1, 19, 29),
+      0 0 5px rgb(0, 22, 37);
+  }
 }
 
-#content-title-break{
-    display: none;
-}
+a .content-text {
+  font-family: "Lato";
+  color: white;
+  text-align: center;
 
-.content-wrapper{
-    overflow: hidden;
-    margin: auto;
-
-    .content-border{
-        @extend .border-wrapper;
-    
-        #content-title{
-            font-family: "Lato";
-            color: white;
-        }
-    
-        .input-wrapper{
-            input{
-                font-family: "Scada";
-                border-radius: 5px;
-                width: 90%;
-                text-align: center;
-            }
-        }
-    
-        .button-wrapper{
-            button{
-                font-family: "Scada";
-                border-radius: 5px;
-                color: white;
-                background-color: transparent;
-                text-align: center;   
-            }
-        }
-    
-        .checkbox-wrapper{
-            font-family: "Scada";
-            color: white;
-            margin: 10px;
-           }
-    }
-}
-
-
-
-
-.links-wrapper{
-    a{
-        font-family: "Oswald";
-        text-decoration: none;
-        color: white;
-    }
-}
-
-.footer{
-    position: absolute;
-    text-align: center;
-    font-size: large;
-	bottom: 0;
-	width: 100%;
-	height: 2.5rem;
-    font-family: "Yanone Kaffeesatz";
-    color: white;
-    
-    a{
-    text-decoration: none;
+  a {
     color: white;
     text-decoration: underline;
+  }
+}
+
+.warning-wrapper {
+  @extend .border-wrapper;
+  font-family: "Signika Negative";
+  border-color: red;
+  margin-bottom: 10px;
+  color: white;
+  padding: 0em;
+}
+
+#content-title-break {
+  display: none;
+}
+
+.content-wrapper {
+  overflow: hidden;
+
+  .content-border {
+    @extend .border-wrapper;
+
+    #content-title {
+      font-family: "Lato";
+      color: white;
     }
+
+    .input-wrapper {
+      input {
+        font-family: "Scada";
+        border-radius: 5px;
+        width: 90%;
+        text-align: center;
+      }
+    }
+
+    .button-wrapper {
+      button {
+        font-family: "Scada";
+        border-radius: 5px;
+        color: white;
+        background-color: #6fbedd59;
+        text-align: center;
+      }
+    }
+
+    .checkbox-wrapper {
+      font-family: "Scada";
+      color: white;
+      margin: 10px;
+    }
+  }
+}
+
+.links-wrapper {
+  a {
+    font-family: "Oswald";
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.footer {
+  position: absolute;
+  text-align: center;
+  font-size: large;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  font-family: "Yanone Kaffeesatz";
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px rgb(0, 97, 114),
+    0 0 5px rgb(0, 53, 54);
+
+  a {
+    color: white;
+    text-decoration: underline;
+
+  }
 }
 
 /*Medium screen*/
-@media all and  (max-height: 670px) { 
-    
-
-}
+@media all and (max-height: 670px) {}
 
 /*Small screen*/
-@media all and (min-height: 480px) and (max-height: 600px) { 
-
-  
-    #header-content{
-        display: none;
-    }
-    
+@media all and (min-height: 480px) and (max-height: 600px) {
+  #header-content {
+    display: none;
+  }
 }
- 
+
 /*Very small screen*/
-@media all and (max-height: 480px) { 
+@media all and (max-height: 480px) {
+  .header-wrapper {
+    padding: 0px;
+    margin: 0px;
+  }
 
-    .header-wrapper{
-        padding: 0px;
-        margin: 0px;
+  #header-content {
+    display: none;
+  }
+
+  .content-border {
+    h3 {
+      margin: 5px;
+
     }
- 
-    #header-content{
-        display: none;
-        
+  }
+
+  .warning-wrapper {
+    h3 {
+      margin: 0px;
     }
+  }
 
-    .border-wrapper{
-        margin: auto;
+  .input-wrapper {
+    input {
+      margin: 0px;
     }
+  }
 
-    
-
-        .warning-wrapper{
-            h3{
-                margin: 0px;
-            }
-        }
-
-    #content-title-break{
-        display: block;
-    }
-
+  #content-title-break {
+    display: block;
+  }
 }
-
 
 ::-webkit-input-placeholder {
-	text-align: center;
+  text-align: center;
 }
 
 :-moz-placeholder {
-	/* Firefox 18- */
-	text-align: center;
+  /* Firefox 18- */
+  text-align: center;
 }
 
 ::-moz-placeholder {
-	/* Firefox 19+ */
-	text-align: center;
+  /* Firefox 19+ */
+  text-align: center;
 }
 
 :-ms-input-placeholder {
-	text-align: center;
+  text-align: center;
 }

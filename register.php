@@ -1,166 +1,159 @@
 <?php
 
 //Config file, separate for security reasons
-include 'resources/config.php';
+require 'resources/config.php';
 
 //Message that updates when an error occurs i.e Username taken, email taken
 $msg = "";
 $msgClass = "";
-try{
-//Submit button has been clicked on the register form
-if(filter_has_var(INPUT_POST, 'submit')){
+$resultCheck = 0;
+try {
+    //Submit button has been clicked on the register form
+    if (filter_has_var(INPUT_POST, 'signup-submit')) {
 
-    //Database credentials
-    $DB_HOST = $config['DB_HOST'];
-    $DB_USER = $config['DB_USERNAME'];
-    $DB_PASSWORD = $config['DB_PASSWORD'];
-    $DB_NAME = $config['DB_DATABASE'];
+        // All registration form inputs
+        $firstname = $connection->real_escape_string($_POST['first-name']);
+        $lastname = $connection->real_escape_string($_POST['last-name']);
+        $username = $connection->real_escape_string($_POST['username']);
+        $email = $connection->real_escape_string($_POST['email']);
+        $password = $connection->real_escape_string($_POST['password']);
+        $cpassword = $connection->real_escape_string($_POST['Cpassword']);
 
-    //Connection to MySQL database
-    $connection = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
-
-    //Connection failure
-    if ($connection->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-// All registration form inputs
-$firstname = $connection->real_escape_string($_POST['first-name']);
-$lastname = $connection->real_escape_string($_POST['last-name']);
-$username = $connection->real_escape_string($_POST['username']);
-$email = $connection->real_escape_string($_POST['email']);
-$password = $connection->real_escape_string($_POST['password']);
-$cpassword = $connection->real_escape_string($_POST['Cpassword']);
-
-//Check if any input field is empty
-if(!empty($firstname) && !empty($lastname) && !empty($username) && !empty($email) && !empty($password) && !empty($cpassword)){
-
-    //Is the input email in a proper format i.e abc123@x.com
-    if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-
-        $msg = 'Please use a valid email';
-    }
-
-    else{
-
-    }
-}
-
-//Empty input field found
-else{
-    $msg = 'Please fill in all fields';
-    $msgClass = 'alert-danger';
-}
-
-//Passwords don't match
-if($password != $cpassword){
-    $msg = "Passwords do not match. Please re-enter passwords to ensure correctness.";
-}
-
-
-
-else{
-    //Check if the given username already exists
-    $sql = $connection->query("SELECT user_id FROM user WHERE username = '$username'");
-    
-    if($sql->num_rows > 0){
-        //Username already exists/taken
-        $msg ="Username taken, please use another username.";
-    }
-
-    else{
-        //Check if the given email exists
-        $sql = $connection->query("SELECT user_id FROM user WHERE email = '$email'");
-        if($sql->num_rows > 0 && strlen($email) > 0){
-            //Email already exists/taken
-            $msg ="Email taken, please use another email.";
+        //Check if any input field is empty
+        if (empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($password) || empty($cpassword)) {
+            $msg = 'Please fill in all fields';
         }
-    
-        else{
-            $token = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
-            $token = str_shuffle($token);
-            $token = substr($token, 0, 10);
+        //Is the input email in a proper format i.e abc123@x.com
+        else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $msg = 'Please use a valid email';
+        } else if (!preg_match("/^([a-zA-Z' ]+)$/", $firstname)) {
+            echo 'First name cannot have any special characters.';
+        } else if (!preg_match("/^([a-zA-Z' ]+)$/", $lastname)) {
+            echo 'Last name cannot have any special characters.';
+        }
+        //Passwords don't match
+        else if ($password != $cpassword) {
+            $msg = "Passwords do not match. Please re-enter passwords to ensure correctness.";
+        } else {
+            //Check if the given username already exists
+            $sql = "SELECT user_id FROM user WHERE username = ?;";
+            $stmt = mysqli_stmt_init($connection);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                echo "SQL statement failed";
+            } else {
+                mysqli_stmt_bind_param($stmt, "s", $username);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_store_result($stmt);
+                $resultCheck = mysqli_stmt_num_rows($stmt);
+            }
 
-            $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
-            $fpToken = str_shuffle($fpToken);
-            $fpToken = substr($fpToken, 0, 10);
+            if ($resultCheck > 0) {
+                //Username already exists/taken
+                $msg = "Username taken, please use another username.";
+            } else {
+                //Check if the given email exists
+                $sql = "SELECT user_id FROM user WHERE email = ?";
+                $stmt = mysqli_stmt_init($connection);
 
-            //Encrypt password using sodium library
-            $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
-            
-            //echo "Create account reached!";
-            //SQL statement to insert user inputs to the database
-            $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token, FPToken)
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "SQL statement failed";
+                    exit();
+                } else {
+                    mysqli_stmt_bind_param($stmt, "s", $email);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                    $resultCheck = mysqli_stmt_num_rows($stmt);
+                }
+
+                if ($resultCheck > 0) {
+                    //Email already exists/taken
+                    $msg = "Email taken, please use another email.";
+                    exit();
+                } else {
+                    $token = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
+                    $token = str_shuffle($token);
+                    $token = substr($token, 0, 10);
+
+                    $fpToken = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!/()";
+                    $fpToken = str_shuffle($fpToken);
+                    $fpToken = substr($fpToken, 0, 10);
+
+                    //Encrypt password using sodium library
+                    $hashedPassword = sodium_crypto_pwhash_scryptsalsa208sha256_str($password, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE, SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE);
+
+                    //echo "Create account reached!";
+                    //SQL statement to insert user inputs to the database
+                    $sql = "INSERT INTO user(first_name, last_name, username, email, password, isEmailConfirmed, Token, FPToken)
             VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '0', '$token', '$fpToken');";
 
-           if ($connection->query($sql) === TRUE) {
-            //SQL insertion successful
-            echo "New record created successfully";
+                    if ($connection->query($sql) === TRUE) {
+                        //SQL insertion successful
+                        echo "New record created successfully";
 
-            $message = 
+                        $message =
 
-            "
+                            "
             <html>
             <title>GymBuds Verification</title>
             <body>
             <h1>GymBuds</h1>
             <br>
-            Hi ". $firstname . ", use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
+            Hi " . $firstname . ", use your token " . $token . " on the <a href = http://localhost/gymBuds/GymBuds/acctverify.php>verify page</a> to verify your GymBuds account.
             </body>
             </head>
             </html>";
 
-            $headers = 
-            "From: ". $config['HOST_EMAIL'];
+                        $headers =
+                            "From: " . $config['HOST_EMAIL'];
 
-            $headers .=
-            "Reply-To: ". $config['HOST_EMAIL'];
+                        $headers .=
+                            "Reply-To: " . $config['HOST_EMAIL'];
 
-            $headers .=
-            'MIME-Version: 1.0' . "\r\n";
+                        $headers .=
+                            'MIME-Version: 1.0' . "\r\n";
 
-            $headers .= 
-            'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                        $headers .=
+                            'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-             //Sent to
-             mail($email, 
+                        //Sent to
+                        mail(
+                            $email,
 
-             //Subject/title
-             "Hi ". $_POST['first-name'] . ", Verify Your GymBuds Account!",
-             
-             //Body
-             $message,
-             
-             //Headers
-            $headers);
+                            //Subject/title
+                            "Hi " . $_POST['first-name'] . ", Verify Your GymBuds Account!",
 
-             //Start a session to send data to the Account Success page
-             session_start();
+                            //Body
+                            $message,
 
-             $_SESSION['name'] = htmlentities($_POST['first-name']);
-             $_SESSION['email'] = htmlentities($_POST['email']);
+                            //Headers
+                            $headers
+                        );
 
-             //Redirects the page to account success page
-             header('Location: acctsuccess.php');
- 
-            } else {
-                //SQL connection error
-            echo "Error: " . $sql . "<br>" . $connection->error;
+                        //Start a session to send data to the Account Success page
+                        session_start();
+
+                        $_SESSION['name'] = htmlentities($_POST['first-name']);
+                        $_SESSION['email'] = htmlentities($_POST['email']);
+
+                        //Redirects the page to account success page
+                        header('Location: acctsuccess.php');
+                    } else {
+                        //SQL connection error
+                        echo "Error: " . $sql . "<br>" . $connection->error;
+                    }
+
+                    $connection->close();
+                }
+            }
         }
-            
-            $connection->close();
-        }
-    
     }
 }
-}
-}
+
 
 //Error has occurred
-catch(PDOException $e){
-    echo "Error:".$e->getMessage();
+catch (PDOException $e) {
+    echo "Error:" . $e->getMessage();
     $connection->close();
-
 }
 ?>
 
@@ -177,114 +170,114 @@ catch(PDOException $e){
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-<div id="main-wrapper">
-<header class="header-wrapper">
-        <div id="header-title">
-        <h1>
-                <a href="login.php">GymBuds</a>
-        </h1>
-        </div>
-        <?php if($msg != ''): ?>
-            <div class="warning-wrapper">
-            <style>
-    @media all and (max-height: 730px) { 
-    .footer{
-        display: none;
-    }
-
-    #content-title-break{
-        display: none;
-    }
-}    
-</style>        
-    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
-        </div>
-        <?php endif; ?>
-        
-        
-        <div class="content-wrapper">
-            <div class="content-border">
-            
-            <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <div id="content-title">
-            <h3>
-                Sign Up
-            </h3>
-
-               <!-- <br id="content-title-break"> -->
-               </div>
-
-            <div class="input-wrapper">
-
-               <!-- <br id="content-title-break"> -->
-            
-            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name"  minlength="2" maxlength="25" size = "30" required>
-            <br>
-            <br>
-            <input type="text" ondblClick="this.select();" name = "last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size = "30" required>
-            <br>
-            <br>
-            <input type="text" ondblClick="this.select();" name= "username" id="username" placeholder="Username" minlength="5" maxlength="25" size = "30" required>
-            <br>
-            <br>
-            <input type="email" ondblClick="this.select();" name = "email" id="email" placeholder="Email" minlength="5" maxlength="50" size = "30" required>
-            <br>
-            <br>
-            <input type="password" ondblClick="this.select();" name = "password" id="password" placeholder="Password (Max Length 20)" size = "30" minlength="5" maxlength="20" required>
-            <br>
-            <br>
-            <input type="password" ondblClick="this.select();" name = "Cpassword" id="Cpassword" placeholder="Repeat Password" size = "30" minlength="5" maxlength="20" required>
+    <div id="main-wrapper">
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
+                </h1>
             </div>
-            <script>
-                function unhidePW() {
-                var x = document.getElementById("password");
-                var y = document.getElementById("Cpassword");
-                    if (x.type === "password") {
-                    x.type = "text";
-                    y.type = "text";
-                    } 
-                    
-                    else {
-                    x.type = "password";
-                    y.type = "password";
-                    }
-  }
-                </script>
+            <?php if ($msg != '') : ?>
+                <div class="warning-wrapper">
+                    <style>
+                        @media all and (max-height: 730px) {
+                            .footer {
+                                display: none;
+                            }
 
-                <script>
-                function reconvertPW() {
-                var x = document.getElementById("password");
-                var y = document.getElementById("Cpassword");
-                 
-                    x.type = "password";
-                    y.type = "password";
-                    
-  }
-                </script>
+                            #content-title-break {
+                                display: none;
+                            }
+                        }
+                    </style>
+                    <h3 id="warning-msg"> <?php echo $msg; ?> </h3>
+                </div>
+            <?php endif; ?>
 
 
-            <div class="checkbox-wrapper">
-            <label>
-            <input type="checkbox" onclick="unhidePW()">Show Password
-            </label>
-            </div>
+            <div class="content-wrapper">
+                <div class="content-border">
 
-            <div class="button-wrapper">
-            <button type="submit" name="submit" value="submit" onclick="reconvertPW()">Create Account</button>
-            </div>
-            </div>
+                    <form name="create-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                        <div id="content-title">
+                            <h3>
+                                Sign Up
+                            </h3>
 
-            
-            </form>
+                            <!-- <br id="content-title-break"> -->
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <!-- <br id="content-title-break"> -->
+
+                            <input type="text" ondblClick="this.select();" name="first-name" id="first-name" placeholder="First Name" minlength="2" maxlength="25" size="30" required>
+                            <br>
+                            <br>
+                            <input type="text" ondblClick="this.select();" name="last-name" id="last-name" placeholder="Last Name" minlength="2" maxlength="25" size="30" required>
+                            <br>
+                            <br>
+                            <input type="text" ondblClick="this.select();" name="username" id="username" placeholder="Username" minlength="5" maxlength="25" size="30" required>
+                            <br>
+                            <br>
+                            <input type="email" ondblClick="this.select();" name="email" id="email" placeholder="Email" minlength="5" maxlength="50" size="30" required>
+                            <br>
+                            <br>
+                            <input type="password" ondblClick="this.select();" name="password" id="password" placeholder="Password (Max Length 20)" size="30" minlength="5" maxlength="20" required>
+                            <br>
+                            <br>
+                            <input type="password" ondblClick="this.select();" name="Cpassword" id="Cpassword" placeholder="Repeat Password" size="30" minlength="5" maxlength="20" required>
+                        </div>
+                        <script>
+                            function unhidePW() {
+                                var x = document.getElementById("password");
+                                var y = document.getElementById("Cpassword");
+                                if (x.type === "password") {
+                                    x.type = "text";
+                                    y.type = "text";
+                                } else {
+                                    x.type = "password";
+                                    y.type = "password";
+                                }
+                            }
+                        </script>
+
+                        <script>
+                            function reconvertPW() {
+                                var x = document.getElementById("password");
+                                var y = document.getElementById("Cpassword");
+
+                                x.type = "password";
+                                y.type = "password";
+
+                            }
+                        </script>
+
+
+                        <div class="checkbox-wrapper">
+                            <label>
+                                <input type="checkbox" onclick="unhidePW()">Show Password
+                            </label>
+                        </div>
+
+                        <div class="button-wrapper">
+                            <button type="submit" name="signup-submit" value="submit" onclick="reconvertPW()">Create Account</button>
+                        </div>
+                </div>
+
+
+                </form>
             </div>
-            </div>
-        
-        <footer class="footer">
+    </div>
+
+    <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
-        </footer>
-        </div>
-        </body>
-    
+    </footer>
+    </div>
 </body>
+
+</body>
+
 </html>

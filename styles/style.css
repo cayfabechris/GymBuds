@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(235deg, #32707efb, #800318, #063829, #167091, #ee7752);
+  background: linear-gradient(235deg, #b8b047fb, #32707efb, #800318, #063829, #167091, #ee7752);
   background-size: 400% 400%;
   margin: 0;
   width: 100%;
@@ -42,6 +42,8 @@ body {
   width: 220px;
   text-align: center;
   border-color: black;
+  -webkit-filter: drop-shadow(2px 2px 2px #222);
+  filter: drop-shadow(2px 2px 2px #222);
 }
 
 .header-wrapper {
@@ -52,6 +54,7 @@ body {
 .header-wrapper #header-title {
   text-align: center;
   font-family: "Baloo Bhaina";
+  text-shadow: 1px 1px 2px black, 0 0 25px #475968, 0 0 5px #005772;
 }
 
 .header-wrapper #header-title a {
@@ -59,16 +62,27 @@ body {
   text-decoration: none;
 }
 
+.header-wrapper img {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
 .header-wrapper #header-content {
   text-align: center;
   font-family: "Signika Negative";
   color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px #01131d, 0 0 5px #001625;
 }
 
-.content-text {
+a .content-text {
   font-family: "Lato";
   color: white;
   text-align: center;
+}
+
+a .content-text a {
+  color: white;
+  text-decoration: underline;
 }
 
 .warning-wrapper {
@@ -85,7 +99,6 @@ body {
 
 .content-wrapper {
   overflow: hidden;
-  margin: auto;
 }
 
 .content-wrapper .content-border #content-title {
@@ -104,7 +117,7 @@ body {
   font-family: "Scada";
   border-radius: 5px;
   color: white;
-  background-color: transparent;
+  background-color: #6fbedd59;
   text-align: center;
 }
 
@@ -129,10 +142,10 @@ body {
   height: 2.5rem;
   font-family: "Yanone Kaffeesatz";
   color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px #006172, 0 0 5px #003536;
 }
 
 .footer a {
-  text-decoration: none;
   color: white;
   text-decoration: underline;
 }
@@ -154,10 +167,13 @@ body {
   #header-content {
     display: none;
   }
-  .border-wrapper, .warning-wrapper, .content-wrapper .content-border {
-    margin: auto;
+  .content-border h3 {
+    margin: 5px;
   }
   .warning-wrapper h3 {
+    margin: 0px;
+  }
+  .input-wrapper input {
     margin: 0px;
   }
   #content-title-break {

@@ -124,13 +124,13 @@ catch (PDOException $e) {
 
 <body>
     <div id="main-wrapper">
-    <header class="header-wrapper">
-        <div id="header-title">
-        <h1>
-            <a href="login.php">GymBuds</a>
-        </h1>
-        </div>
-</header>
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
+                </h1>
+            </div>
+        </header>
 
         <?php if ($msg != '') : ?>
             <div class="warning-wrapper">
@@ -142,31 +142,31 @@ catch (PDOException $e) {
         <div class="content-wrapper">
             <div class="content-border">
                 <div id="content-title">
-            <h3>
-                Verify Your Account
-            </h3>
-            </div>
-            <form name="verify-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <div class="input-wrapper">
-
-                    <input type="email" ondblClick="this.select();" name="email" id="email" placeholder="Email" minlength="5" maxlength="50" size="25" required>
-                    <br>
-                    <br>
-                    <input type="text" ondblClick="this.select();" name="token" id="token" placeholder="Token (In your signup email)" size="25" maxlength="10" required>
-
-
+                    <h3>
+                        Verify Your Account
+                    </h3>
                 </div>
-                <br>
-                <div class="button-wrapper">
-                <button type="submit" name="submit" value="submit" onclick="reconvertPW()">Verify Account</button>
-                </div>
+                <form name="verify-account" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="input-wrapper">
 
-            </form>
+                        <input type="email" ondblClick="this.select();" name="email" id="email" placeholder="Email" minlength="5" maxlength="50" size="25" required>
+                        <br>
+                        <br>
+                        <input type="text" ondblClick="this.select();" name="token" id="token" placeholder="Token (In your signup email)" size="25" maxlength="10" required>
+
+
+                    </div>
+                    <br>
+                    <div class="button-wrapper">
+                        <button type="submit" name="submit" value="submit" onclick="reconvertPW()">Verify Account</button>
+                    </div>
+
+                </form>
             </div>
         </div>
-        </div>
+    </div>
 
-        <footer class="footer">
+    <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
     </footer>
 </body>

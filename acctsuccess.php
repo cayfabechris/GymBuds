@@ -21,7 +21,7 @@ if (isset($_SESSION['name'])) {
     session_destroy();
 } else {
     //User is trying to access this page without having proper authorization, send them back to the login page
-   header("Location: login.php");
+    header("Location: login.php");
 }
 ?>
 
@@ -40,19 +40,19 @@ if (isset($_SESSION['name'])) {
 
 <body>
     <div id="main-wrapper">
-    <header class="header-wrapper">
-        <div id="header-title">
-        <h1>
-            <a href="login.php">GymBuds</a>
-        </h1>
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
+                </h1>
+            </div>
+        </header>
+        <div class="content-text">
+            <h2>Thanks <?php echo $name; ?>,
+                please check your email at <?php echo $email; ?>
+                to verify your account.
+            </h2>
         </div>
-    </header>
-    <div class="content-text">
-        <h2>Thanks <?php echo $name; ?>,
-            please check your email at <?php echo $email; ?>
-            to verify your account.
-        </h2>
-    </div>
     </div>
     <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)

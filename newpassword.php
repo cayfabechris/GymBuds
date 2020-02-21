@@ -6,11 +6,11 @@ session_start();
 //If the session variables, name, email, along with the session were started 
 //on the previous page, the user has valid access to this page
 
-//if (isset($_SESSION["firstName"]) && isset($_SESSION["email"])) {
+if (isset($_SESSION["firstName"]) && isset($_SESSION["email"])) {
 
     //Session variables for debugging and testing only, comment out after each use
-    $_SESSION['firstName'] = "Bob";
-    $_SESSION['email'] = "bob123@gmail.com";
+    //$_SESSION['firstName'] = "Bob";
+    //$_SESSION['email'] = "bob123@gmail.com";
 
     $firstName = $_SESSION["firstName"];
     $email = $_SESSION['email'];
@@ -82,13 +82,13 @@ session_start();
         echo "Error:" . $e->getMessage();
         $connection->close();
     }
-//}
+}
 
 //User does not have valid authorization to use this page, redirect to login page.
-/*else {
+else {
     header("location: login.php");
     $msg = "Session not started";
-}*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +97,7 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+    <script src="scripts/script.js"></script>
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/style.css">
     <title>
@@ -105,78 +106,82 @@ session_start();
 </head>
 
 <body>
-    <header class="header-wrapper">
-        <div id="header-title">
-        <h1>
-            <a href="login.php">GymBuds</a>
+    <div id="main-wrapper">
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
 
-        </h1>
-        </div>
+                </h1>
+            </div>
+        </header>
         <div class="content-text">
-        <h3> Hi <?php echo $firstName; ?>, please create a new password </h3>
+            <h3> Hi <?php echo $firstName; ?>, please create a new password </h3>
         </div>
         <?php if ($msg != '') : ?>
-            <div id="warning-wrapper">
+            <div class="warning-wrapper">
                 <?php echo $msg; ?>
             </div>
         <?php endif; ?>
 
         <div class="content-wrapper">
-        <div class="content-border">
-            <div id="content-title">
-            <h3>
-                Create New Password
-            </h3>
-            </div>
-            <form name="createPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <div class="input-wrapper">
+            <div class="content-border">
+                <div id="content-title">
+                    <h3>
+                        Create New Password
+                    </h3>
+                </div>
+                <form name="createPassword" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="input-wrapper">
 
-                    <input type="password" ondblClick="this.select();" name="password" id="password" placeholder="New Password (Max Length 20)" size="30" minlength="5" maxlength="20" required>
-                    <br>
-                    <br>
-                    <input type="password" ondblClick="this.select();" name="Cpassword" id="Cpassword" placeholder="Repeat Password" size="30" minlength="5" maxlength="20" required>
+                        <input type="password" autocomplete="new-password" ondblClick="this.select();" name="password" id="password" placeholder="New Password (Max Length 20)" size="30" minlength="5" maxlength="20" required>
+                        <br>
+                        <br>
+                        <input type="password" autocomplete="new-password" ondblClick="this.select();" name="Cpassword" id="Cpassword" placeholder="Repeat Password" size="30" minlength="5" maxlength="20" required>
 
-                    <script>
-                        function unhidePW() {
-                            var x = document.getElementById("password");
-                            var y = document.getElementById("Cpassword");
-                            if (x.type === "password") {
-                                x.type = "text";
-                                y.type = "text";
-                            } else {
+                        <script>
+                            function unhidePW() {
+                                var x = document.getElementById("password");
+                                var y = document.getElementById("Cpassword");
+                                if (x.type === "password") {
+                                    x.type = "text";
+                                    y.type = "text";
+                                } else {
+                                    x.type = "password";
+                                    y.type = "password";
+                                }
+                            }
+                        </script>
+
+                        <script>
+                            function reconvertPW() {
+                                var x = document.getElementById("password");
+                                var y = document.getElementById("Cpassword");
+
                                 x.type = "password";
                                 y.type = "password";
+
                             }
-                        }
-                    </script>
+                        </script>
 
-                    <script>
-                        function reconvertPW() {
-                            var x = document.getElementById("password");
-                            var y = document.getElementById("Cpassword");
 
-                            x.type = "password";
-                            y.type = "password";
 
-                        }
-                    </script>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" onclick="unhidePW()">Show Password
+                    </div>
+                    <div class="button-wrapper">
+                        <button name="submit" value="submit" type="submit">Create New Password</button>
+                    </div>
 
-          
-
-                </div>
-                <div class="checkbox-wrapper">
-                <input type="checkbox" onclick="unhidePW()">Show Password
-                </div>
-                <div class="button-wrapper">
-                <button name="submit" value="submit" type="submit">Create New Password</button>
-                </div>
-              
-            </form>
+                </form>
             </div>
 
         </div>
+    </div>
+    </div>
 
-        <footer class="footer">
+    <footer class="footer">
         Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
     </footer>
 </body>

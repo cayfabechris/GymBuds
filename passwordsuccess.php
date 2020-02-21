@@ -10,7 +10,7 @@ if (isset($_SESSION['firstName'])) {
     $name = $_SESSION['firstName'];
 
     //Redirect back to login after 30 seconds, done for user security and privacy
-    header("refresh:30; url=login.php");
+    //header("refresh:30; url=login.php");
 
     //Get rid of all user credentials and variables
     session_destroy();
@@ -30,26 +30,30 @@ else {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GymBuds: Account Created!</title>
+    <title>GymBuds: Password Reset</title>
+    <script src="scripts/script.js"></script>
+
     <link rel="stylesheet" href="styles/fonts.css">\
-    <link rel="stylesheet" href="styles/style-success.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>
-            <a href="login.php">GymBuds</a>
-        </h1>
-
-        <div id="successTextWrapper">
-            <h2>Thanks <?php echo $name; ?>,
-                your password has been reset. You may <a href="login.php">login here</a>.
-            </h2>
-        </div>
-
-        <footer>
-            Website made by Christian Rodriguez ((<a href="https://github.com/cjrcodes>cjrcodes on GitHub</a>))
-        </footer>
+    <div id="main-wrapper">
+        <header class="header-wrapper">
+            <div id="header-title">
+                <h1>
+                    <a href="login.php">GymBuds</a>
+                </h1>
+            </div>
+            <div class="content-text">
+                <h2>Thanks <?php echo $name; ?>,
+                    your password has been reset. You may <a href="login.php">login here</a>.
+                </h2>
+            </div>
+    </div>
+    <footer class="footer">
+        Website made by Christian Rodriguez (<a href="https://github.com/cjrcodes">cjrcodes on GitHub</a>)
+    </footer>
 
 </body>
 
